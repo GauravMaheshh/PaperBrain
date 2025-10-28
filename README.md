@@ -22,8 +22,6 @@ PaperBrain uses a **multi-agent AI pipeline** designed for high accuracy, modula
 ---
 
 ## ⚙️ System Architecture
-
-## ⚙️ System Architecture
 ```mermaid
 graph TD
     A[INPUTS<br/>Question Paper<br/>Scanned Answer Script<br/>Reference Answer Key] --> B[PLANNING AGENT<br/>Task Orchestration]
