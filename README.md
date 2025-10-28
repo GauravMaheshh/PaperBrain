@@ -23,51 +23,29 @@ PaperBrain uses a **multi-agent AI pipeline** designed for high accuracy, modula
 
 ## ⚙️ System Architecture
 
-┌─────────────────────────────────────────────────────────────────┐
-│                           INPUTS                                │
-├─────────────────────────────────────────────────────────────────┤
-│  • Question Paper                                               │
-│  • Scanned Answer Script                                        │
-│  • Reference Answer Key                                         │
-└────────────────────────────────┬────────────────────────────────┘
-                                 │
-                                 ▼
-                    ┌────────────────────────┐
-                    │   PLANNING AGENT       │
-                    │  (Task Orchestration)  │
-                    └───────────┬────────────┘
-                                │
-                ┌───────────────┼───────────────┐
-                │               │               │
-                ▼               ▼               ▼
-       ┌────────────┐  ┌────────────┐  ┌────────────┐
-       │   ALIGN    │  │    FIND    │  │    READ    │
-       │   AGENT    │  │   AGENT    │  │   AGENT    │
-       ├────────────┤  ├────────────┤  ├────────────┤
-       │ ORB +      │  │ Contours & │  │ OCR:       │
-       │ Homography │  │ Region     │  │ Tesseract/ │
-       │            │  │ Detection  │  │ EasyOCR    │
-       └─────┬──────┘  └─────┬──────┘  └─────┬──────┘
-             │               │               │
-             └───────────────┴───────┬───────┘
-                                     │
-                                     ▼
-                          ┌──────────────────┐
-                          │  GRADE AGENT     │
-                          ├──────────────────┤
-                          │ Semantic         │
-                          │ Matching &       │
-                          │ Scoring          │
-                          └────────┬─────────┘
-                                   │
-                                   ▼
-                       ┌───────────────────────┐
-                       │   OUTPUT REPORT       │
-                       ├───────────────────────┤
-                       │ • Question-wise Marks │
-                       │ • Total Score         │
-                       │ • Flagged Responses   │
-                       └───────────────────────┘
+## ⚙️ System Architecture
+```mermaid
+graph TD
+    A[INPUTS<br/>Question Paper<br/>Scanned Answer Script<br/>Reference Answer Key] --> B[PLANNING AGENT<br/>Task Orchestration]
+    
+    B --> C[ALIGN AGENT<br/>ORB + Homography]
+    B --> D[FIND AGENT<br/>Contours & Region Detection]
+    B --> E[READ AGENT<br/>OCR: Tesseract/EasyOCR]
+    
+    C --> F[GRADE AGENT<br/>Semantic Matching & Scoring]
+    D --> F
+    E --> F
+    
+    F --> G[OUTPUT REPORT<br/>• Question-wise Marks<br/>• Total Score<br/>• Flagged Responses]
+    
+    style A fill:#2d3748,stroke:#4a5568,color:#fff
+    style B fill:#2b6cb0,stroke:#2c5282,color:#fff
+    style C fill:#2f855a,stroke:#276749,color:#fff
+    style D fill:#2f855a,stroke:#276749,color:#fff
+    style E fill:#2f855a,stroke:#276749,color:#fff
+    style F fill:#c05621,stroke:#9c4221,color:#fff
+    style G fill:#5a67d8,stroke:#434190,color:#fff
+```
 
 **Key Capabilities:**  
 - ✅ Automatic alignment of distorted answer sheets  
