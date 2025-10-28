@@ -40,20 +40,23 @@ class PipelineController:
         os.makedirs(self.preprocessor_outputs_dir, exist_ok=True)
         os.makedirs(self.text_recognition_outputs_dir, exist_ok=True)
 
-    def save_uploads(self, answer_key_path: str, answer_sheet_path: str, related_docs: List[str]) -> Dict[str, Any]:
+    def save_uploads(self, answer_key_paths: List[str], answer_sheet_path: str, related_docs: List[str]) -> Dict[str, Any]:
         """
         Persist uploaded files into expected agent directories.
-        - answer_key -> preprocessor/question_paper_templates/ (as template)
+        - answer_key_paths -> preprocessor/question_paper_templates/ (as templates)
         - answer_sheet -> preprocessor/answer_scripts/ (as scan)
         - related_docs -> evaluator/inputs/related_docs/
         The provided paths point to temporary upload locations; copy into destinations.
         """
         destinations: Dict[str, Any] = {}
 
-        # Preprocessor inputs (answer key as template, answer sheet as scan)
-        ak_dest = os.path.join(self.preprocessor_templates_dir, f"template_{os.path.basename(answer_key_path)}")
-        shutil.copy2(answer_key_path, ak_dest)
-        destinations["answer_key"] = ak_dest
+        # Preprocessor inputs (multiple answer keys as templates, answer sheet as scan)
+        saved_templates = []
+        for i, ak_path in enumerate(answer_key_paths):
+            ak_dest = os.path.join(self.preprocessor_templates_dir, f"template_{i+1}_{os.path.basename(ak_path)}")
+            shutil.copy2(ak_path, ak_dest)
+            saved_templates.append(ak_dest)
+        destinations["answer_keys"] = saved_templates
 
         as_dest = os.path.join(self.preprocessor_inputs_dir, f"scan_{os.path.basename(answer_sheet_path)}")
         shutil.copy2(answer_sheet_path, as_dest)
@@ -74,6 +77,7 @@ class PipelineController:
     def run_preprocessor(self) -> Dict[str, Any]:
         """
         Run the preprocessor agent using the existing alignment_agent.py
+        Try multiple templates and use the best alignment result
         """
         # Find the latest uploaded files
         template_files = [f for f in os.listdir(self.preprocessor_templates_dir) if f.startswith("template_")]
@@ -86,42 +90,62 @@ class PipelineController:
                 "summary": {}
             }
         
-        # Use the latest files
-        template_path = os.path.join(self.preprocessor_templates_dir, max(template_files))
+        # Use the latest scan file
         scan_path = os.path.join(self.preprocessor_inputs_dir, max(scan_files))
+        
+        # Try alignment with each template and pick the best result
+        best_result = None
+        best_score = 0
+        best_template = None
         
         try:
             # Import and run the alignment agent
             sys.path.append(self.preprocessor_dir)
             from alignment_agent import run_alignment_agent
             
-            # Run alignment
-            img_aligned, H, score = run_alignment_agent(template_path, scan_path)
+            for template_file in template_files:
+                template_path = os.path.join(self.preprocessor_templates_dir, template_file)
+                
+                try:
+                    # Run alignment
+                    img_aligned, H, score = run_alignment_agent(template_path, scan_path)
+                    
+                    if img_aligned is not None and score > best_score:
+                        best_score = score
+                        best_result = img_aligned
+                        best_template = template_file
+                        
+                except Exception as e:
+                    print(f"Alignment failed for template {template_file}: {e}")
+                    continue
             
-            if img_aligned is not None:
+            if best_result is not None:
                 # Save aligned image
                 output_filename = f"aligned_{os.path.basename(scan_path)}"
                 output_path = os.path.join(self.preprocessor_outputs_dir, output_filename)
                 import cv2
-                cv2.imwrite(output_path, img_aligned)
+                cv2.imwrite(output_path, best_result)
                 
                 summary = {
                     "status": "completed",
-                    "message": "Preprocessing completed successfully.",
-                    "alignment_score": float(score),
-                    "transformation_matrix": H.tolist() if H is not None else None,
+                    "message": f"Preprocessing completed successfully using template: {best_template}",
+                    "alignment_score": float(best_score),
+                    "template_used": best_template,
                     "output_image": output_path,
+                    "templates_tried": len(template_files),
                     "fixes": [
                         "Image alignment completed",
                         "Perspective correction applied",
-                        "Template matching successful"
+                        "Template matching successful",
+                        f"Best template: {best_template}"
                     ]
                 }
             else:
                 summary = {
                     "status": "failed",
-                    "message": f"Alignment failed with score: {score}",
-                    "alignment_score": float(score),
+                    "message": f"Alignment failed for all {len(template_files)} templates",
+                    "alignment_score": 0,
+                    "templates_tried": len(template_files),
                     "fixes": []
                 }
                 
@@ -327,9 +351,9 @@ class PipelineController:
         return os.environ.get("PYTHON", "python")
 
 
-def run_pipeline_after_uploads(answer_key: str, answer_sheet: str, related_docs: List[str]) -> Dict[str, Any]:
+def run_pipeline_after_uploads(answer_key_paths: List[str], answer_sheet: str, related_docs: List[str]) -> Dict[str, Any]:
     controller = PipelineController()
-    saved = controller.save_uploads(answer_key, answer_sheet, related_docs)
+    saved = controller.save_uploads(answer_key_paths, answer_sheet, related_docs)
     results = controller.run_pipeline()
     return {"saved": saved, "results": results}
 

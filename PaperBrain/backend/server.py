@@ -35,11 +35,18 @@ def health() -> Any:
 def upload() -> Any:
     """
     Accepts multipart/form-data with fields:
-    - answer_key: file
+    - answer_key[]: multiple files (answer keys/templates)
     - answer_sheet: file
-    - related_docs: multiple files (use related_docs[])
+    - related_docs[]: multiple files
     """
-    answer_key_path = _save_file("answer_key")
+    # Handle multiple answer keys
+    answer_key_files = request.files.getlist("answer_key[]") or request.files.getlist("answer_key")
+    answer_key_paths = []
+    for f in answer_key_files:
+        dest = os.path.join(UPLOAD_ROOT, f.filename)
+        f.save(dest)
+        answer_key_paths.append(dest)
+    
     answer_sheet_path = _save_file("answer_sheet")
 
     # related_docs can be multiple
@@ -50,11 +57,11 @@ def upload() -> Any:
         f.save(dest)
         related_doc_paths.append(dest)
 
-    if not answer_key_path or not answer_sheet_path:
-        return jsonify({"error": "answer_key and answer_sheet are required"}), 400
+    if not answer_key_paths or not answer_sheet_path:
+        return jsonify({"error": "at least one answer_key and answer_sheet are required"}), 400
 
     controller = PipelineController()
-    saved = controller.save_uploads(answer_key_path, answer_sheet_path, related_doc_paths)
+    saved = controller.save_uploads(answer_key_paths, answer_sheet_path, related_doc_paths)
     return jsonify({"saved": saved})
 
 
@@ -62,12 +69,12 @@ def upload() -> Any:
 def run_pipeline() -> Any:
     data: Dict[str, Any] = request.get_json(silent=True) or {}
     # optional: accept paths if already uploaded via other means
-    answer_key = data.get("answer_key_path")
+    answer_keys = data.get("answer_key_paths", [])
     answer_sheet = data.get("answer_sheet_path")
     related = data.get("related_docs_paths", [])
 
-    if answer_key and answer_sheet:
-        results = run_pipeline_after_uploads(answer_key, answer_sheet, related)
+    if answer_keys and answer_sheet:
+        results = run_pipeline_after_uploads(answer_keys, answer_sheet, related)
         return jsonify(results)
 
     # Otherwise run pipeline on already saved files in agents dirs
