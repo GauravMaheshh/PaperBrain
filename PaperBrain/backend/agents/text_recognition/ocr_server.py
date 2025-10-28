@@ -5,118 +5,89 @@ import numpy as np
 import sys
 import json
 import os
-
-# --- 1. Initialization ---
-try:
-    import easyocr
-    OCR_AVAILABLE = True
-except ImportError:
-    OCR_AVAILABLE = False
-    print("FATAL ERROR: easyocr not installed. Run: pip install easyocr", file=sys.stderr)
-    sys.exit(1)
-
+from PIL import Image
+from transformers import pipeline
 from mcp.server import Server
 from mcp.types import Tool, TextContent
 from mcp.server.stdio import stdio_server
 
-# Initialize EasyOCR Reader once
-reader = None
-if OCR_AVAILABLE:
-    try:
-        print("Initializing EasyOCR reader...", file=sys.stderr)
-        # Suppress stdout from easyocr
-        original_stdout = sys.stdout
-        sys.stdout = sys.stderr
-        try:
-            reader = easyocr.Reader(['en'], gpu=False, verbose=False)
-        finally:
-            sys.stdout = original_stdout # Restore stdout
-        print("EasyOCR ready!", file=sys.stderr)
-    except Exception as e:
-        print(f"Failed to initialize EasyOCR: {e}", file=sys.stderr)
-        OCR_AVAILABLE = False
+# --- 1. Initialization ---
+print("Initializing Hugging Face TrOCR model (microsoft/trocr-small-handwritten)...", file=sys.stderr)
+ocr_pipeline = pipeline("image-to-text", model="microsoft/trocr-small-handwritten")
+print("✅ TrOCR model ready!", file=sys.stderr)
 
-# This is the ONLY 'app' definition
-app = Server("easyocr-server")
+# Initialize MCP server
+app = Server("trocr-server")
 
-# Create a folder to store our debug images
+# Create a folder to store cropped debug images
 os.makedirs("debug_crops", exist_ok=True)
 
-
-# --- 2. The Recognition Function (EasyOCR Version) ---
-# *** CHANGED PADDING FROM 10 to 5 ***
-# This should help fix the "ca" error by not grabbing the box line.
-def recognize_from_rois_easyocr(image_base64: str, rois: list, padding: int = 10) -> list:
+# --- 2. Recognition Function (TrOCR Version) ---
+def recognize_from_rois_trocr(image_base64: str, rois: list, padding: int = 10) -> list:
     """
-    Crops and recognizes text from ROIs using EasyOCR.
+    Crops and recognizes handwritten text from ROIs using Hugging Face TrOCR.
     """
-    if not OCR_AVAILABLE or reader is None:
-        raise RuntimeError("EasyOCR is not available or failed to initialize.")
-        
     try:
         nparr = np.frombuffer(base64.b64decode(image_base64), np.uint8)
-        # Load as a 3-channel COLOR image, which easyocr prefers
         color_img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+        if color_img is None:
+            raise ValueError("Could not decode image")
         
-        if color_img is None: raise ValueError("Could not decode image")
-            
         (img_h, img_w) = color_img.shape[:2]
         recognized_answers = []
 
         for i, box in enumerate(rois):
             x, y, w, h = box
-            
-            # Apply padding
+
+            # Apply small padding (helps avoid cutoff)
             y_start = max(0, y - padding)
             y_end = min(img_h, y + h + padding)
             x_start = max(0, x - padding)
             x_end = min(img_w, x + w + padding)
-            
-            # Crop the padded region from the COLOR image
-            padded_crop = color_img[y_start:y_end, x_start:x_end]
-            
-            # --- Save debug image ---
+
+            crop = color_img[y_start:y_end, x_start:x_end]
+
+            # Save debug crop
             crop_filename = f"debug_crops/roi_{i+1}.png"
-            cv2.imwrite(crop_filename, padded_crop)
-            
-            # --- Call EasyOCR ---
-            # We give it the raw color crop
-            result = reader.readtext(
-                padded_crop, 
-                detail=0,
-                allowlist='abc0123456789' # *** REMOVED REDUNDANT UPPERCASE ***
-            )
-            
-            if result:
-                # result is like ['b'], so we take the first item
-                answer = result[0].lower().strip()
-                recognized_answers.append(answer)
-                print(f"  ROI {i+1}: Found '{answer}'", file=sys.stderr)
-            else:
-                # No text found
-                recognized_answers.append("") # Append empty string
-                print(f"  ROI {i+1}: Found no text", file=sys.stderr)
-                
+            cv2.imwrite(crop_filename, crop)
+
+            if crop.size == 0:
+                recognized_answers.append("")
+                print(f"  ROI {i+1}: Empty crop, skipping.", file=sys.stderr)
+                continue
+
+            # Convert to RGB PIL Image
+            pil_image = Image.fromarray(cv2.cvtColor(crop, cv2.COLOR_BGR2RGB))
+
+            # Run TrOCR
+            prediction = ocr_pipeline(pil_image)
+            text = prediction[0]["generated_text"].strip()
+
+            recognized_answers.append(text)
+            print(f"  ROI {i+1}: Found '{text}'", file=sys.stderr)
+
         return recognized_answers
-        
+
     except Exception as e:
-        print(f"EasyOCR processing failed: {e}", file=sys.stderr)
-        raise ValueError(f"EasyOCR processing failed: {str(e)}")
+        print(f"TrOCR processing failed: {e}", file=sys.stderr)
+        raise ValueError(f"TrOCR processing failed: {str(e)}")
 
-
-# --- 3. The Tool Definition and Caller (Unchanged) ---
+# --- 3. MCP Tool Definition and Caller ---
 @app.list_tools()
 async def list_tools() -> list[Tool]:
     """List available tools"""
     return [
         Tool(
             name="read_text_in_rois",
-            description="Reads text from a list of specific regions (ROIs) of a base64 image.",
+            description="Reads handwritten text from specific ROIs of a base64-encoded image using Hugging Face TrOCR.",
             inputSchema={
                 "type": "object",
                 "properties": {
                     "image_base64": {"type": "string"},
-                    "rois": {"type": "array", "items": { "type": "array", "items": { "type": "integer" } }}
+                    "rois": {
+                        "type": "array",
+                        "items": {"type": "array", "items": {"type": "integer"}}
+                    }
                 },
                 "required": ["image_base64", "rois"]
             }
@@ -130,38 +101,29 @@ async def call_tool(name: str, arguments: dict) -> list[TextContent]:
         try:
             image_data = arguments["image_base64"]
             rois = arguments["rois"]
-            
-            print(f"--- Tool 'read_text_in_rois' (EasyOCR Model) called with {len(rois)} ROIs ---", file=sys.stderr)
-            
-            recognized_list = recognize_from_rois_easyocr(image_data, rois)
-            
-            # --- *** START CHANGE *** ---
-            # Convert the list of answers into the desired dictionary format
-            answers_dict = {}
-            for i, answer in enumerate(recognized_list):
-                # Format as "Q1", "Q2", etc.
-                answers_dict[f"Q{i+1}"] = answer
-                
-            # Now, the output JSON will be {"Q1": "c", "Q2": "6", ...}
+
+            print(f"--- Tool 'read_text_in_rois' (TrOCR Model) called with {len(rois)} ROIs ---", file=sys.stderr)
+
+            recognized_list = recognize_from_rois_trocr(image_data, rois)
+
+            # Convert list of answers into {"Q1": "a", "Q2": "6", ...}
+            answers_dict = {f"Q{i+1}": ans for i, ans in enumerate(recognized_list)}
+
             output_json = json.dumps(answers_dict)
-            # --- *** END CHANGE *** ---
 
             return [
                 TextContent(type="text", text=f"Successfully processed {len(rois)} regions."),
-                TextContent(type="text", text=output_json) # This now contains the new JSON
+                TextContent(type="text", text=output_json)
             ]
         except Exception as e:
             return [
-                TextContent(
-                    type="text",
-                    text=f"Error recognizing text: {str(e)}"
-                )
+                TextContent(type="text", text=f"Error recognizing text: {str(e)}")
             ]
-    
+
     raise ValueError(f"Unknown tool: {name}")
 
 async def main():
-    """Run the server"""
+    """Run the TrOCR server"""
     async with stdio_server() as (read_stream, write_stream):
         await app.run(
             read_stream,
