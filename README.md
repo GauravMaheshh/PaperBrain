@@ -1,6 +1,6 @@
-# 🧠 PaperBrain – Automated Handwritten Answer Script Evaluation
+# PaperBrain – Automated Handwritten Answer Script Evaluation
 
-## 📘 Overview
+## Overview
 **PaperBrain** is an AI-powered system that automates the evaluation of handwritten answer sheets for educational institutions.
 
 Traditional evaluation methods rely on manual checking — which is time-consuming, error-prone, and resource-intensive. Teachers often spend days sorting, grading, and handling physical scripts, leading to delays and inconsistencies in results.
@@ -9,7 +9,7 @@ Traditional evaluation methods rely on manual checking — which is time-consumi
 
 ---
 
-## 💡 Solution Overview
+## Solution Overview
 PaperBrain uses a **multi-agent AI pipeline** designed for high accuracy, modularity, and adaptability. Each agent in the system performs a specific task in the evaluation process:
 
 1. **Planning Agent** – Orchestrates the workflow, coordinating all other agents.  
@@ -21,7 +21,7 @@ PaperBrain uses a **multi-agent AI pipeline** designed for high accuracy, modula
 
 ---
 
-## ⚙️ System Architecture
+## System Architecture
 ```mermaid
 graph TD
     A[INPUTS<br/>Question Paper<br/>Scanned Answer Script<br/>Reference Answer Key] --> B[PLANNING AGENT<br/>Task Orchestration]
@@ -46,18 +46,18 @@ graph TD
 ```
 
 **Key Capabilities:**  
-- ✅ Automatic alignment of distorted answer sheets  
-- 🧠 Semantic understanding of handwritten answers  
-- ⚠️ Smart anomaly flagging for unclear or incomplete responses  
-- 🔁 Works for both **MCQs and descriptive answers**
+- Automatic alignment of distorted answer sheets  
+- Semantic understanding of handwritten answers  
+- Smart anomaly flagging for unclear or incomplete responses  
+- Works for both **MCQs and descriptive answers**
 
 ---
 
-## 👥 Team Members
+## Team Members
 - Sanjeev Krishna  
 - Somasekhara S  
 - Bharat K  
 - Shivsrijit Verma  
-- Gaurav M  
+- Gaurav Mahesh
 
 
