@@ -10,24 +10,25 @@ from mcp.client.stdio import stdio_client
 # --- 1. CONFIGURE YOUR TEST DATA HERE ---
 
 # ❗️ Update these paths to match your files
-BLANK_IMAGE_PATH = "/Users/gaurav/Downloads/1-2.jpg"
-MARKED_IMAGE_PATH = "/Users/gaurav/Downloads/1.jpg" 
+BLANK_IMAGE_PATH = "../preprocessor/question_paper_templates/template_1_question.jpg"
+MARKED_IMAGE_PATH = "../preprocessor/aligned_outputs/aligned_scan_answers.jpg" 
 
 # ❗️ These are the ROIs from your Agent 1 script (they are for the RESIZED image)
 rois_to_test = [
-    [1434, 930, 57, 60],
-    [1452, 1101, 48, 96],
-    [1440, 1285, 64, 44],
-    [1439, 1424, 51, 62],
-    [1436, 1585, 69, 46],
-    [1430, 1909, 67, 68],
-    [1035, 2093, 66, 53]
+    [1389, 916, 164, 69],
+    [1399, 1107, 151, 81],
+    [1414, 1271, 131, 65],
+    [1399, 1401, 151, 83],
+    [1385, 1572, 152, 62],
+    [1402, 1932, 115, 28],
+    [1009, 2085, 171, 61]
 ]
+
 # ----------------------------------------
 
 # Define the server to launch (Agent 2)
 agent_2_server = StdioServerParameters(
-    command="python3",
+    command="python",
     args=["ocr_server.py"] 
 )
 

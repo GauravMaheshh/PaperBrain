@@ -84,7 +84,7 @@ def recognize_from_rois_easyocr(image_base64: str, rois: list, padding: int = 10
             result = reader.readtext(
                 padded_crop, 
                 detail=0,
-                allowlist='abc0123456789' # *** REMOVED REDUNDANT UPPERCASE ***
+                allowlist='abc023456789' # *** REMOVED REDUNDANT UPPERCASE ***
             )
             
             if result:

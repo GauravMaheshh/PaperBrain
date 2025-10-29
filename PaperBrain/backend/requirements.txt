@@ -5,6 +5,8 @@ Flask-Cors==4.0.1
 opencv-python
 numpy
 matplotlib
+seaborn
+pandas
 easyocr
 google-generativeai
 python-dotenv
