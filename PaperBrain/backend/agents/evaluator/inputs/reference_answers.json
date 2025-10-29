@@ -23,5 +23,55 @@
         "question": "MCQ: Select the correct option for the boiling point of water.",
         "answer": "100°C",
         "marks": 2
+    },
+    "Q6": {
+        "question": "What is the capital of France?",
+        "answer": "Paris",
+        "marks": 0
+    },
+    "Q7": {
+        "question": "2 + 2 = ?",
+        "answer": "4",
+        "marks": 0
+    },
+    "Q8": {
+        "question": "Fill in the blank: The ___ is the largest planet in our solar system.",
+        "answer": "Jupiter",
+        "marks": 0
+    },
+    "Q9": {
+        "question": "Who wrote the Mahabharata?",
+        "answer": "Vyasa",
+        "marks": 0
+    },
+    "Q10": {
+        "question": "MCQ: Select the correct option for the boiling point of water.",
+        "answer": "100°C",
+        "marks": 0
+    },
+    "Q11": {
+        "question": "What is the capital of France?",
+        "answer": "Paris",
+        "marks": 0
+    },
+    "Q12": {
+        "question": "2 + 2 = ?",
+        "answer": "4",
+        "marks": 0
+    },
+    "Q13": {
+        "question": "Fill in the blank: The ___ is the largest planet in our solar system.",
+        "answer": "Jupiter",
+        "marks": 0
+    },
+    "Q14": {
+        "question": "Who wrote the Mahabharata?",
+        "answer": "Vyasa",
+        "marks": 0
+    },
+    "Q15": {
+        "question": "MCQ: Select the correct option for the boiling point of water.",
+        "answer": "100°C",
+        "marks": 0
     }
 }

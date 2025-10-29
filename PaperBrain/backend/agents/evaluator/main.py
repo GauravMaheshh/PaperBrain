@@ -12,11 +12,11 @@ if not API_KEY:
 
 # Configure Gemini
 genai.configure(api_key=API_KEY)
-MODEL_NAME = "gemini-2.5-flash" 
+MODEL_NAME = "gemini-2.5-flash"
 model = genai.GenerativeModel(MODEL_NAME)
 
 # --- File Paths ---
-INCOMING_FOLDER = "../text_recognition/Outputs" 
+INCOMING_FOLDER = "../text_recognition/Outputs"
 TEMP_DIR = "./temp"
 INPUTS_DIR = "./inputs"
 PROMPTS_DIR = "./prompts"
@@ -38,25 +38,22 @@ os.makedirs(PROMPTS_DIR, exist_ok=True)
 os.makedirs(DOCS_FOLDER, exist_ok=True)
 os.makedirs(RESULTS_DIR, exist_ok=True)
 
-
 # --- Data Loaders ---
 def load_json(path):
     if os.path.exists(path):
         with open(path, "r", encoding="utf-8") as f:
             return json.load(f)
-    return {} if "reference" in path else {"students": []} 
+    return {} if "reference" in path else {"students": []}
 
 def save_json(path, data):
     with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
-
 
 # --- Initial Setup ---
 reference_answers = load_json(REFERENCE_FILE)
 
 with open(PROMPT_FILE, "r", encoding="utf-8") as f:
     BASE_PROMPT = f.read()
-
 
 # --- Upload related docs ---
 def upload_related_docs(folder_path):
@@ -81,14 +78,13 @@ def upload_related_docs(folder_path):
             uploaded_files.append(uploaded_file)
         except Exception as e:
             print(f"Failed to upload {filename}: {e}")
-            
+
     print(f"Uploaded {len(uploaded_files)} context files.")
     return uploaded_files
 
 related_docs = upload_related_docs(DOCS_FOLDER)
 if not related_docs:
     print("No context documents found. Grading will rely only on prompt and answers.")
-
 
 # --- Gemini Evaluation Function ---
 def evaluate_with_gemini(student_ans, ref_ans, max_marks):
@@ -114,7 +110,7 @@ Use any additional context from the uploaded related documents to ensure more ac
 
         start, end = text.find("{"), text.rfind("}")
         if start != -1 and end != -1:
-            json_str = text[start:end+1]
+            json_str = text[start:end + 1]
             result = json.loads(json_str)
             return result.get("awarded_marks", 0), result.get("feedback", "")
         else:
@@ -122,43 +118,31 @@ Use any additional context from the uploaded related documents to ensure more ac
     except Exception as e:
         return 0, f"API Error: {str(e)}"
 
-
-# --- Main Evaluation Logic ---
-def process_new_student():
-    files = [f for f in os.listdir(INCOMING_FOLDER) if f.endswith(".json")]
-    if not files:
-        print("No new student submission found.")
-        return
-
-    latest_file = max([os.path.join(INCOMING_FOLDER, f) for f in files], key=os.path.getctime)
-    print(f"Found new submission: {latest_file}")
-
-    with open(latest_file, "r", encoding="utf-8") as f:
+# --- Process One File ---
+def process_student_file(file_path, current_data):
+    with open(file_path, "r", encoding="utf-8") as f:
         student_entry = json.load(f)
 
     student_info = student_entry.get("student_info", {})
     student_answers = student_entry.get("answers", {})
-
     student_name = student_info.get("name", "")
     roll_no = student_info.get("roll_no", "")
+
     print(f"Evaluating student: {student_name} ({roll_no})")
 
-    # Load persistent results files
-    student_data = load_json(STUDENT_FILE)
-    master_results = load_json(JSON_FILE)
-
-    evaluation_results = []
-    total_awarded = 0
-    total_possible = 0
+    total_awarded = current_data.get("total_awarded_marks", 0)
+    total_possible = current_data.get("total_possible_marks", 0)
+    answers = current_data.get("answers", {})
 
     for qno, student_ans in student_answers.items():
         ref_info = reference_answers.get(str(qno))
         if not ref_info:
-            evaluation_results.append({
-                "question_no": qno, "awarded_marks": 0, "max_marks": 0,
-                "feedback": "No reference answer found",
-                "student_answer": student_ans, "reference_answer": "N/A"
-            })
+            answers[qno] = {
+                "answer": student_ans,
+                "awarded_marks": 0,
+                "max_marks": 0,
+                "feedback": "No reference answer found"
+            }
             continue
 
         ref_ans = ref_info["answer"]
@@ -170,64 +154,81 @@ def process_new_student():
         total_awarded += awarded
         total_possible += max_marks
 
-        evaluation_results.append({
-            "question_no": qno,
-            "student_answer": student_ans,
-            "reference_answer": ref_ans,
-            "max_marks": max_marks,
+        answers[qno] = {
+            "answer": student_ans,
             "awarded_marks": awarded,
+            "max_marks": max_marks,
             "feedback": feedback
-        })
+        }
 
-    # --- Prepare current_student.json with marks ---
-    current_student_record = {
+    updated_data = {
         "student_info": student_info,
         "total_awarded_marks": total_awarded,
         "total_possible_marks": total_possible,
-        "answers": {}
+        "answers": answers
     }
 
-    for r in evaluation_results:
-        current_student_record["answers"][r["question_no"]] = {
-            "answer": r["student_answer"],
-            "awarded_marks": r["awarded_marks"],
-            "max_marks": r["max_marks"],
-            "feedback": r["feedback"]
-        }
-
-    # Save temp JSON
-    os.makedirs(TEMP_DIR, exist_ok=True)
     with open(CURRENT_STUDENT_FILE, "w", encoding="utf-8") as f:
-        json.dump(current_student_record, f, indent=4, ensure_ascii=False)
+        json.dump(updated_data, f, indent=4, ensure_ascii=False)
 
-    # Append to master JSON files
-    student_data.setdefault("students", []).append(current_student_record)
+    os.remove(file_path)
+    print(f"Removed processed file: {file_path}")
+
+    return updated_data
+
+# --- Main Function ---
+def process_all_students():
+    files = sorted(
+        [os.path.join(INCOMING_FOLDER, f) for f in os.listdir(INCOMING_FOLDER) if f.endswith(".json")],
+        key=os.path.getctime
+    )
+    if not files:
+        print("No new student submissions found.")
+        return
+
+    print(f"Found {len(files)} submissions to process.\n")
+
+    if os.path.exists(CURRENT_STUDENT_FILE):
+        with open(CURRENT_STUDENT_FILE, "r", encoding="utf-8") as f:
+            current_data = json.load(f)
+    else:
+        current_data = {"student_info": {}, "total_awarded_marks": 0, "total_possible_marks": 0, "answers": {}}
+
+    for file_path in files:
+        current_data = process_student_file(file_path, current_data)
+
+    # Save final results
+    student_data = load_json(STUDENT_FILE)
+    master_results = load_json(JSON_FILE)
+
+    student_data.setdefault("students", []).append(current_data)
+    master_results.setdefault("students", []).append(current_data)
     save_json(STUDENT_FILE, student_data)
-
-    master_results.setdefault("students", []).append(current_student_record)
     save_json(JSON_FILE, master_results)
 
-    # Append results to CSV
     csv_exists = os.path.exists(CSV_FILE)
     with open(CSV_FILE, "a", newline='', encoding="utf-8") as f:
         writer = csv.writer(f)
         if not csv_exists or os.path.getsize(CSV_FILE) == 0:
-            writer.writerow(["Student Name", "Roll No", "Question No", "Student Answer", 
+            writer.writerow(["Student Name", "Roll No", "Question No", "Student Answer",
                              "Reference Answer", "Max Marks", "Awarded Marks", "Feedback"])
-        for r in evaluation_results:
-            writer.writerow([student_name, roll_no, r["question_no"], r["student_answer"], 
-                             r["reference_answer"], r["max_marks"], r["awarded_marks"], r["feedback"]])
+        for qno, details in current_data["answers"].items():
+            writer.writerow([
+                current_data["student_info"].get("name", ""),
+                current_data["student_info"].get("roll_no", ""),
+                qno,
+                details["answer"],
+                reference_answers.get(qno, {}).get("answer", "N/A"),
+                details["max_marks"],
+                details["awarded_marks"],
+                details["feedback"]
+            ])
 
-    print(f"\nEvaluation complete for {student_name}")
-    print(f"Final Score: {total_awarded}/{total_possible}")
+    print(f"\nEvaluation complete for {current_data['student_info'].get('name', 'Unknown Student')}")
+    print(f"Final Score: {current_data['total_awarded_marks']}/{current_data['total_possible_marks']}")
     print(f"Current student record saved at: {CURRENT_STUDENT_FILE}")
-    print(f"Updated results saved in JSON and CSV.")
-
-    # Cleanup
-    # os.remove(latest_file)
-    # print(f"Removed processed file: {latest_file}")
-
+    print("Updated results saved in JSON and CSV.")
 
 # --- Run Script ---
 if __name__ == "__main__":
-    process_new_student()
+    process_all_students()

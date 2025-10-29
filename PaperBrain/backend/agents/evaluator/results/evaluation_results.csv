@@ -10,163 +10,6 @@ Anurag Kumar,AID23B016,Q3,Saturn,Jupiter,2,0,"The answer is incorrect. Jupiter i
 Anurag Kumar,AID23B016,Q4,Vyasa,Vyasa,3,3,Excellent! Your answer is perfectly correct and complete.
 Anurag Kumar,AID23B016,Q5,90°C,100°C,2,0,The correct boiling point of water is 100°C. Please review this fundamental concept.
 Priya Sharma,AID23B017,Q1,New Delhi,New Delhi,2,2,Excellent! Your answer is correct and complete.
-Priya Sharma,AID23B017,Q2,5,4,1,0,"Error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10
-Please retry in 23.835522252s. [violations {
-}
-, links {
-  description: ""Learn more about Gemini API quotas""
-  url: ""https://ai.google.dev/gemini-api/docs/rate-limits""
-}
-, retry_delay {
-  seconds: 23
-}
-]"
-Priya Sharma,AID23B017,Q3,Jupiter,Jupiter,2,0,"Error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10
-Please retry in 23.415512087s. [violations {
-}
-, links {
-  description: ""Learn more about Gemini API quotas""
-  url: ""https://ai.google.dev/gemini-api/docs/rate-limits""
-}
-, retry_delay {
-  seconds: 23
-}
-]"
-Priya Sharma,AID23B017,Q4,Vyas,Vyasa,3,0,"Error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10
-Please retry in 22.803732851s. [violations {
-}
-, links {
-  description: ""Learn more about Gemini API quotas""
-  url: ""https://ai.google.dev/gemini-api/docs/rate-limits""
-}
-, retry_delay {
-  seconds: 22
-}
-]"
-Priya Sharma,AID23B017,Q5,100°C,100°C,2,0,"Error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10
-Please retry in 22.389432391s. [violations {
-}
-, links {
-  description: ""Learn more about Gemini API quotas""
-  url: ""https://ai.google.dev/gemini-api/docs/rate-limits""
-}
-, retry_delay {
-  seconds: 22
-}
-]"
-Rohit Singh,AID23B018,Q1,New Delhi,New Delhi,2,0,"Error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10
-Please retry in 21.907071435s. [violations {
-}
-, links {
-  description: ""Learn more about Gemini API quotas""
-  url: ""https://ai.google.dev/gemini-api/docs/rate-limits""
-}
-, retry_delay {
-  seconds: 21
-}
-]"
-Rohit Singh,AID23B018,Q2,4,4,1,1,Excellent! Your answer is correct and concise.
-Rohit Singh,AID23B018,Q3,Jupiter,Jupiter,2,0,"Error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10
-Please retry in 19.118676826s. [violations {
-}
-, links {
-  description: ""Learn more about Gemini API quotas""
-  url: ""https://ai.google.dev/gemini-api/docs/rate-limits""
-}
-, retry_delay {
-  seconds: 19
-}
-]"
-Rohit Singh,AID23B018,Q4,Vyasa,Vyasa,3,0,"Error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10
-Please retry in 18.670135591s. [violations {
-}
-, links {
-  description: ""Learn more about Gemini API quotas""
-  url: ""https://ai.google.dev/gemini-api/docs/rate-limits""
-}
-, retry_delay {
-  seconds: 18
-}
-]"
-Rohit Singh,AID23B018,Q5,100°C,100°C,2,0,"Error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10
-Please retry in 18.043550857s. [violations {
-}
-, links {
-  description: ""Learn more about Gemini API quotas""
-  url: ""https://ai.google.dev/gemini-api/docs/rate-limits""
-}
-, retry_delay {
-  seconds: 18
-}
-]"
-Neha Verma,AID23B019,Q1,Delhi,New Delhi,2,0,"Error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10
-Please retry in 17.577419926s. [violations {
-}
-, links {
-  description: ""Learn more about Gemini API quotas""
-  url: ""https://ai.google.dev/gemini-api/docs/rate-limits""
-}
-, retry_delay {
-  seconds: 17
-}
-]"
-Neha Verma,AID23B019,Q2,4,4,1,0,"Error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10
-Please retry in 17.082273764s. [violations {
-}
-, links {
-  description: ""Learn more about Gemini API quotas""
-  url: ""https://ai.google.dev/gemini-api/docs/rate-limits""
-}
-, retry_delay {
-  seconds: 17
-}
-]"
-Neha Verma,AID23B019,Q3,Jupiter,Jupiter,2,0,"Error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10
-Please retry in 16.485338138s. [violations {
-}
-, links {
-  description: ""Learn more about Gemini API quotas""
-  url: ""https://ai.google.dev/gemini-api/docs/rate-limits""
-}
-, retry_delay {
-  seconds: 16
-}
-]"
-Neha Verma,AID23B019,Q4,Vyasa,Vyasa,3,0,"Error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10
-Please retry in 16.007709163s. [violations {
-}
-, links {
-  description: ""Learn more about Gemini API quotas""
-  url: ""https://ai.google.dev/gemini-api/docs/rate-limits""
-}
-, retry_delay {
-  seconds: 16
-}
-]"
-Neha Verma,AID23B019,Q5,100°C,100°C,2,0,"Error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10
-Please retry in 15.525510697s. [violations {
-}
-, links {
-  description: ""Learn more about Gemini API quotas""
-  url: ""https://ai.google.dev/gemini-api/docs/rate-limits""
-}
-, retry_delay {
-  seconds: 15
-}
-]"
 Shivsrijit Verma,AID23B015,Q1,New Delhi,New Delhi,2,2,Excellent! The answer is perfectly correct and matches the reference.
 Shivsrijit Verma,AID23B015,Q2,4,4,1,1,Excellent! Your answer is perfectly correct and matches the reference.
 Shivsrijit Verma,AID23B015,Q3,Jupiter,Jupiter,2,2,"Excellent answer, it is completely correct."
@@ -177,15 +20,168 @@ Shivsrijit Verma,AID23B015,Q2,4,4,1,1,Correct answer. Well done!
 Shivsrijit Verma,AID23B015,Q3,Jupiter,Jupiter,2,2,Excellent work! Your answer is perfectly correct and precise.
 Shivsrijit Verma,AID23B015,Q4,Vyasa,Vyasa,3,3,Your answer is perfectly correct and complete.
 Shivsrijit Verma,AID23B015,Q5,100°C,100°C,2,2,Your answer is perfectly correct and complete.
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q1,ca,New Delhi,2,0,The answer is incorrect. Please review the capital of India.
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q2,6,4,1,0,The answer provided is incorrect. Please recheck your calculation.
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q3,a,Jupiter,2,0,The answer provided is incorrect. Please review the topic to identify the correct celestial body.
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q4,c,Vyasa,3,0,The answer 'c' is incorrect. Please provide the correct name as per the question context.
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q5,a,100°C,2,0,The answer 'a' is incorrect. Please review the correct boiling point of water.
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q6,b,N/A,0,0,No reference answer found
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q7,5,N/A,0,0,No reference answer found
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q1,New Delhi,New Delhi,2,2,"Correct answer, well done!"
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q2,4,4,1,1,The answer is correct and complete.
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q3,Jupiter,Jupiter,2,2,Excellent! Your answer is perfectly correct and complete.
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q4,Vyasa,Vyasa,3,3,Excellent answer! You have correctly identified Vyasa.
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q5,101°C,100°C,2,0,The answer provided is incorrect. Ensure precision in stating factual values like boiling points.
+Shivsrijit Verma,AID23B015,Q1,c,New Delhi,2,0,The answer provided is incorrect. Please ensure your response directly addresses the question asked.
+Shivsrijit Verma,AID23B015,Q2,6,4,1,0,Your answer is incorrect. Please recheck your calculation.
+Shivsrijit Verma,AID23B015,Q3,a,Jupiter,2,0,The answer is incorrect. Please review the topic of planets in our solar system.
+Shivsrijit Verma,AID23B015,Q4,b,Vyasa,3,0,The answer 'b' is incorrect. Please review the correct name 'Vyasa'.
+Shivsrijit Verma,AID23B015,Q5,d,100°C,2,0,The answer 'd' is incorrect and does not address the question. Please provide a relevant numerical or descriptive answer.
+Shivsrijit Verma,AID23B015,Q1,c,New Delhi,2,0,Your answer 'c' is incorrect. The capital of India is New Delhi.
+Shivsrijit Verma,AID23B015,Q2,6,4,1,0,The answer provided is incorrect. Please recheck your calculation.
+Shivsrijit Verma,AID23B015,Q3,a,Jupiter,2,0,Your answer 'a' is incorrect. Please review the topic to provide a relevant answer.
+Shivsrijit Verma,AID23B015,Q4,b,Vyasa,3,0,The answer 'b' is incorrect. The author of the Mahabharata is Vyasa. Please review the material.
+Shivsrijit Verma,AID23B015,Q5,d,100°C,2,0,"API Error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10
+Please retry in 55.05364003s. [violations {
+}
+, links {
+  description: ""Learn more about Gemini API quotas""
+  url: ""https://ai.google.dev/gemini-api/docs/rate-limits""
+}
+, retry_delay {
+  seconds: 55
+}
+]"
+Shivsrijit Verma,AID23B015,Q1,c,New Delhi,2,0,Your answer 'c' is incorrect. The capital of India is New Delhi.
+Shivsrijit Verma,AID23B015,Q2,6,4,1,0,Your answer is incorrect. Please review the basic arithmetic.
+Shivsrijit Verma,AID23B015,Q3,a,Jupiter,2,0,Your answer 'a' is incorrect. Please review the topic to identify the correct answer.
+Shivsrijit Verma,AID23B015,Q4,b,Vyasa,3,0,Your answer 'b' is incorrect. The correct answer is Vyasa. Please ensure you recall the correct name for the author.
+Shivsrijit Verma,AID23B015,Q5,d,100°C,2,0,Your answer 'd' is incorrect and does not address the question for which 100°C is the correct response. Please review the relevant concept.
+Shivsrijit Verma,AID23B015,Q1,c,New Delhi,2,0,"API Error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10
+Please retry in 26.111870147s. [violations {
+}
+, links {
+  description: ""Learn more about Gemini API quotas""
+  url: ""https://ai.google.dev/gemini-api/docs/rate-limits""
+}
+, retry_delay {
+  seconds: 26
+}
+]"
+Shivsrijit Verma,AID23B015,Q2,6,4,1,0,"API Error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10
+Please retry in 25.680630887s. [violations {
+}
+, links {
+  description: ""Learn more about Gemini API quotas""
+  url: ""https://ai.google.dev/gemini-api/docs/rate-limits""
+}
+, retry_delay {
+  seconds: 25
+}
+]"
+Shivsrijit Verma,AID23B015,Q3,a,Jupiter,2,0,"API Error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10
+Please retry in 25.275580396s. [violations {
+}
+, links {
+  description: ""Learn more about Gemini API quotas""
+  url: ""https://ai.google.dev/gemini-api/docs/rate-limits""
+}
+, retry_delay {
+  seconds: 25
+}
+]"
+Shivsrijit Verma,AID23B015,Q4,b,Vyasa,3,0,The answer 'b' is incorrect. The correct answer is 'Vyasa'.
+Shivsrijit Verma,AID23B015,Q5,d,100°C,2,0,"API Error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10
+Please retry in 21.580627515s. [violations {
+}
+, links {
+  description: ""Learn more about Gemini API quotas""
+  url: ""https://ai.google.dev/gemini-api/docs/rate-limits""
+}
+, retry_delay {
+  seconds: 21
+}
+]"
+Shivsrijit Verma,AID23B015,Q1,c,New Delhi,2,0,"The answer 'c' is incorrect. The correct answer is New Delhi, which is India's capital."
+Shivsrijit Verma,AID23B015,Q2,6,4,1,0,The answer provided is incorrect. Please recheck the calculation.
+Shivsrijit Verma,AID23B015,Q3,a,Jupiter,2,0,Your answer 'a' is incorrect. Please review the topic to identify the correct term.
+Shivsrijit Verma,AID23B015,Q4,b,Vyasa,3,0,The answer provided is incorrect. The Mahabharata was written by Vyasa.
+Shivsrijit Verma,AID23B015,Q5,d,100°C,2,0,The answer 'd' is incorrect and does not match the expected value of 100°C. Please review the relevant concept.
+Shivsrijit Verma,AID23B015,Q1,c,New Delhi,2,0,Your answer 'c' is incorrect. The capital of India is New Delhi.
+Shivsrijit Verma,AID23B015,Q2,6,4,1,0,Your answer is incorrect. Please review the question and re-evaluate your calculation.
+Shivsrijit Verma,AID23B015,Q3,a,Jupiter,2,0,The answer 'a' is incorrect. Please review the topic of planets to identify the largest one.
+Shivsrijit Verma,AID23B015,Q4,b,Vyasa,3,0,The answer is incorrect. Please review the correct name for the author.
+Shivsrijit Verma,AID23B015,Q5,d,100°C,2,0,The answer 'd' is incorrect and irrelevant to the question. Please provide the correct boiling point.
+Shivsrijit Verma,AID23B015,Q1,c,New Delhi,2,0,The answer 'c' is incorrect. Please provide the correct name of the capital.
+Shivsrijit Verma,AID23B015,Q2,6,4,1,0,The answer provided is incorrect. Please recheck the calculation or information.
+Shivsrijit Verma,AID23B015,Q3,a,Jupiter,2,0,The answer provided is incorrect. Please review your knowledge about planets.
+Shivsrijit Verma,AID23B015,Q4,b,Vyasa,3,0,The answer 'b' is incorrect. The correct answer is Vyasa.
+Shivsrijit Verma,AID23B015,Q5,d,100°C,2,0,The answer 'd' is incorrect. Please provide the specific temperature for the boiling point.
+Shivsrijit Verma,AID23B015,Q1,c,New Delhi,2,0,Your answer 'c' is incorrect. Please provide the correct capital city.
+Shivsrijit Verma,AID23B015,Q2,6,4,1,0,The answer provided is incorrect. Please recheck your calculation.
+Shivsrijit Verma,AID23B015,Q3,a,Jupiter,2,0,Your answer 'a' is incorrect. The correct answer is Jupiter.
+Shivsrijit Verma,AID23B015,Q4,b,Vyasa,3,0,The answer 'b' is incorrect. Please review the author of the Mahabharata.
+Shivsrijit Verma,AID23B015,Q5,d,100°C,2,0,The answer 'd' is incorrect. The boiling point of water is 100°C.
+Shivsrijit Verma,AID23B015,Q1,c,New Delhi,2,0,"Your answer 'c' is incorrect. The correct capital is New Delhi, as stated in the reference."
+Shivsrijit Verma,AID23B015,Q2,6,4,1,0,"The answer is incorrect. The correct value should be 4, not 6."
+Shivsrijit Verma,AID23B015,Q3,a,Jupiter,2,0,Your answer 'a' is incorrect. The correct answer is Jupiter.
+Shivsrijit Verma,AID23B015,Q4,b,Vyasa,3,0,The answer 'b' is incorrect. Please review the author of the Mahabharata.
+Shivsrijit Verma,AID23B015,Q5,d,100°C,2,0,Your answer 'd' is incorrect and irrelevant to the question. Please provide an answer related to the subject matter.
+Shivsrijit Verma,AID23B015,Q1,c,New Delhi,2,0,Your answer 'c' is incorrect. The correct answer is New Delhi. Please ensure your answer directly addresses the question.
+Shivsrijit Verma,AID23B015,Q2,6,4,1,0,The answer provided is incorrect. Please recheck your calculation.
+Shivsrijit Verma,AID23B015,Q3,a,Jupiter,2,0,The answer 'a' is incorrect. Please provide the correct name as requested by the question.
+Shivsrijit Verma,AID23B015,Q4,b,Vyasa,3,0,The answer 'b' is incorrect. Please recall the correct author of the Mahabharata.
+Shivsrijit Verma,AID23B015,Q5,d,100°C,2,0,Your answer 'd' is incorrect and does not address the question. Please provide the correct numerical value and units.
+Shivsrijit Verma,AID23B015,Q1,c,New Delhi,2,0,The answer 'c' is incorrect. The correct capital is New Delhi.
+Shivsrijit Verma,AID23B015,Q2,6,4,1,0,The answer provided is incorrect. Please recheck your calculation.
+Shivsrijit Verma,AID23B015,Q3,a,Jupiter,2,0,Your answer 'a' is incorrect. Please review the topic to identify the correct planet.
+Shivsrijit Verma,AID23B015,Q4,b,Vyasa,3,0,The answer 'b' is incorrect. Please review the correct author of the Mahabharata.
+Shivsrijit Verma,AID23B015,Q5,d,100°C,2,0,The answer 'd' is incorrect. Please provide the correct temperature value.
+Shivsrijit Verma,AID23B015,Q1,c,New Delhi,2,0,Your answer 'c' is incorrect. The correct capital of India is New Delhi.
+Shivsrijit Verma,AID23B015,Q2,6,4,1,0,The answer provided is incorrect. Please recheck the calculation.
+Shivsrijit Verma,AID23B015,Q3,a,Jupiter,2,0,The answer 'a' is incorrect. Please ensure you provide the correct name for the planet.
+Shivsrijit Verma,AID23B015,Q4,b,Vyasa,3,0,The answer 'b' is incorrect. Please recall the correct name of the author.
+Shivsrijit Verma,AID23B015,Q5,d,100°C,2,0,The answer 'd' is incorrect. Please review the concept to provide a relevant numerical answer.
+Shivsrijit Verma,AID23B015,Q1,c,New Delhi,2,0,Your answer 'c' is incorrect. The correct capital city is New Delhi.
+Shivsrijit Verma,AID23B015,Q2,6,4,1,0,Your answer is incorrect. Please recheck your calculations for accuracy.
+Shivsrijit Verma,AID23B015,Q3,a,Jupiter,2,0,Your answer 'a' is incorrect. Please review the question and provide the correct name.
+Shivsrijit Verma,AID23B015,Q4,b,Vyasa,3,0,The answer 'b' is incorrect. The correct answer is Vyasa.
+Shivsrijit Verma,AID23B015,Q5,d,100°C,2,0,Your answer is incorrect and does not provide the required information. Please ensure your response directly addresses the question.
+Shivsrijit Verma,AID23B015,Q1,c,New Delhi,2,0,The answer provided is incorrect and does not match the reference. Please provide the correct capital of India.
+Shivsrijit Verma,AID23B015,Q2,6,4,1,0,The answer provided is incorrect. Please recheck your calculation.
+Shivsrijit Verma,AID23B015,Q3,a,Jupiter,2,0,The answer 'a' is incorrect. Please review the topic to identify the correct planet.
+Shivsrijit Verma,AID23B015,Q4,b,Vyasa,3,0,The answer 'b' is incorrect. The Mahabharata was written by Vyasa.
+Shivsrijit Verma,AID23B015,Q5,d,100°C,2,0,The answer 'd' is incorrect and does not relate to the reference answer. Please review the concept of water's boiling point.
+Shivsrijit Verma,AID23B015,Q8,c,N/A,0,0,No reference answer found
+Shivsrijit Verma,AID23B015,Q2,6,4,1,0,The answer provided is incorrect. Please recheck the calculation.
+Shivsrijit Verma,AID23B015,Q0,a,N/A,0,0,No reference answer found
+Shivsrijit Verma,AID23B015,Q1,b,New Delhi,2,0,Your answer is incorrect. Please review the correct capital city.
+Shivsrijit Verma,AID23B015,Q4,d,Vyasa,3,0,The answer is incorrect. Please review the material on the authorship of the Mahabharata.
+Shivsrijit Verma,AID23B015,Q6,c,Paris,0,0,Your answer 'c' is incorrect and does not match the reference answer 'Paris'.
+Shivsrijit Verma,AID23B015,Q7,6,4,0,0,"Your answer is incorrect (expected 4). This question carries 0 marks, so no score is awarded."
+Shivsrijit Verma,AID23B015,Q8,a,Jupiter,0,0,Your answer 'a' is incorrect. The correct answer is 'Jupiter'.
+Shivsrijit Verma,AID23B015,Q9,b,Vyasa,0,0,The answer 'b' is incorrect and does not match the reference answer 'Vyasa'.
+Shivsrijit Verma,AID23B015,Q10,d,100°C,0,0,The answer 'd' is incorrect and does not match the reference answer '100°C'.
+Shivsrijit Verma,AID23B015,Q6,c,Paris,0,0,Your answer 'c' is incorrect and does not match the reference answer 'Paris'.
+Shivsrijit Verma,AID23B015,Q7,6,4,0,0,"Your answer is incorrect (expected 4). This question carries 0 marks, so no score is awarded."
+Shivsrijit Verma,AID23B015,Q8,a,Jupiter,0,0,Your answer 'a' is incorrect. The correct answer is 'Jupiter'.
+Shivsrijit Verma,AID23B015,Q9,b,Vyasa,0,0,The answer 'b' is incorrect and does not match the reference answer 'Vyasa'.
+Shivsrijit Verma,AID23B015,Q10,d,100°C,0,0,The answer 'd' is incorrect and does not match the reference answer '100°C'.
+Shivsrijit Verma,AID23B015,Q1,c,New Delhi,2,0,The answer 'c' is incorrect. Please review the correct capital of India.
+Shivsrijit Verma,AID23B015,Q2,6,4,1,0,The answer provided is incorrect. Please recheck your calculation.
+Shivsrijit Verma,AID23B015,Q3,a,Jupiter,2,0,Your answer 'a' is incorrect. The correct answer is 'Jupiter'. Please review the relevant topic.
+Shivsrijit Verma,AID23B015,Q4,b,Vyasa,3,0,The answer 'b' is incorrect. Please review the correct name for the author.
+Shivsrijit Verma,AID23B015,Q5,d,100°C,2,0,The answer 'd' is incorrect. Please provide the correct value for the question.
+Shivsrijit Verma,AID23B015,Q15,c,100°C,0,0,Your answer 'c' is incorrect. The correct answer is 100°C.
+Shivsrijit Verma,AID23B015,Q14,6,Vyasa,0,0,The answer '6' is incorrect and does not relate to the expected answer 'Vyasa'.
+Shivsrijit Verma,AID23B015,Q13,a,Jupiter,0,0,Your answer 'a' is incorrect; the correct answer is Jupiter. No marks were awarded as the maximum marks for this question is 0.
+Shivsrijit Verma,AID23B015,Q12,b,4,0,0,"The provided answer 'b' is incorrect. The correct answer is 4. However, as the maximum marks for this question is 0, no marks can be awarded."
+Shivsrijit Verma,AID23B015,Q11,d,Paris,0,0,The provided answer 'd' is incorrect and does not match the reference answer 'Paris'.
+Shivsrijit Verma,AID23B015,Q6,c,Paris,0,0,Your answer 'c' is incorrect and does not match the reference answer 'Paris'.
+Shivsrijit Verma,AID23B015,Q7,6,4,0,0,"Your answer is incorrect (expected 4). This question carries 0 marks, so no score is awarded."
+Shivsrijit Verma,AID23B015,Q8,a,Jupiter,0,0,Your answer 'a' is incorrect. The correct answer is 'Jupiter'.
+Shivsrijit Verma,AID23B015,Q9,b,Vyasa,0,0,The answer 'b' is incorrect and does not match the reference answer 'Vyasa'.
+Shivsrijit Verma,AID23B015,Q10,d,100°C,0,0,The answer 'd' is incorrect and does not match the reference answer '100°C'.
+Shivsrijit Verma,AID23B015,Q1,c,New Delhi,2,0,Your answer 'c' is incorrect. The correct answer is 'New Delhi'.
+Shivsrijit Verma,AID23B015,Q2,6,4,1,0,Your answer is incorrect. The correct answer is 4.
+Shivsrijit Verma,AID23B015,Q3,a,Jupiter,2,0,Your answer is incorrect. Please review the topic to provide the correct planet name.
+Shivsrijit Verma,AID23B015,Q4,b,Vyasa,3,0,The answer provided is incorrect. Please refer to the correct author of the Mahabharata.
+Shivsrijit Verma,AID23B015,Q5,d,100°C,2,0,The answer 'd' is incorrect. Please provide the correct value or information related to the question.
+Shivsrijit Verma,AID23B015,Q15,c,100°C,0,0,The answer 'c' is incorrect and does not relate to the expected temperature value. Please review the concept and provide a relevant numerical answer.
+Shivsrijit Verma,AID23B015,Q14,6,Vyasa,0,0,Your answer is incorrect; the correct author is Vyasa.
+Shivsrijit Verma,AID23B015,Q13,a,Jupiter,0,0,"Your answer 'a' is incorrect; the correct answer is 'Jupiter'. As this question has a maximum mark of 0, no marks are awarded."
+Shivsrijit Verma,AID23B015,Q12,b,4,0,0,Your answer 'b' is incorrect; the correct value is 4.
+Shivsrijit Verma,AID23B015,Q11,d,Paris,0,0,The answer provided is incorrect. The correct answer is Paris.

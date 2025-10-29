@@ -1,40 +1,100 @@
 {
     "student_info": {
-        "name": "STUDENT_NAME_HERE",
-        "roll_no": "ROLL_NO_HERE"
+        "name": "Shivsrijit Verma",
+        "roll_no": "AID23B015"
     },
-    "total_awarded_marks": 8,
-    "total_possible_marks": 10,
+    "total_awarded_marks": 0,
+    "total_possible_marks": 20,
     "answers": {
+        "Q6": {
+            "answer": "c",
+            "awarded_marks": 0,
+            "max_marks": 0,
+            "feedback": "Your answer 'c' is incorrect and does not match the reference answer 'Paris'."
+        },
+        "Q7": {
+            "answer": "6",
+            "awarded_marks": 0,
+            "max_marks": 0,
+            "feedback": "Your answer is incorrect (expected 4). This question carries 0 marks, so no score is awarded."
+        },
+        "Q8": {
+            "answer": "a",
+            "awarded_marks": 0,
+            "max_marks": 0,
+            "feedback": "Your answer 'a' is incorrect. The correct answer is 'Jupiter'."
+        },
+        "Q9": {
+            "answer": "b",
+            "awarded_marks": 0,
+            "max_marks": 0,
+            "feedback": "The answer 'b' is incorrect and does not match the reference answer 'Vyasa'."
+        },
+        "Q10": {
+            "answer": "d",
+            "awarded_marks": 0,
+            "max_marks": 0,
+            "feedback": "The answer 'd' is incorrect and does not match the reference answer '100°C'."
+        },
         "Q1": {
-            "answer": "New Delhi",
-            "awarded_marks": 2,
-            "max_marks": 2,
-            "feedback": "Correct answer, well done!"
-        },
-        "Q2": {
-            "answer": "4",
-            "awarded_marks": 1,
-            "max_marks": 1,
-            "feedback": "The answer is correct and complete."
-        },
-        "Q3": {
-            "answer": "Jupiter",
-            "awarded_marks": 2,
-            "max_marks": 2,
-            "feedback": "Excellent! Your answer is perfectly correct and complete."
-        },
-        "Q4": {
-            "answer": "Vyasa",
-            "awarded_marks": 3,
-            "max_marks": 3,
-            "feedback": "Excellent answer! You have correctly identified Vyasa."
-        },
-        "Q5": {
-            "answer": "101°C",
+            "answer": "c",
             "awarded_marks": 0,
             "max_marks": 2,
-            "feedback": "The answer provided is incorrect. Ensure precision in stating factual values like boiling points."
+            "feedback": "Your answer 'c' is incorrect. The correct answer is 'New Delhi'."
+        },
+        "Q2": {
+            "answer": "6",
+            "awarded_marks": 0,
+            "max_marks": 1,
+            "feedback": "Your answer is incorrect. The correct answer is 4."
+        },
+        "Q3": {
+            "answer": "a",
+            "awarded_marks": 0,
+            "max_marks": 2,
+            "feedback": "Your answer is incorrect. Please review the topic to provide the correct planet name."
+        },
+        "Q4": {
+            "answer": "b",
+            "awarded_marks": 0,
+            "max_marks": 3,
+            "feedback": "The answer provided is incorrect. Please refer to the correct author of the Mahabharata."
+        },
+        "Q5": {
+            "answer": "d",
+            "awarded_marks": 0,
+            "max_marks": 2,
+            "feedback": "The answer 'd' is incorrect. Please provide the correct value or information related to the question."
+        },
+        "Q15": {
+            "answer": "c",
+            "awarded_marks": 0,
+            "max_marks": 0,
+            "feedback": "The answer 'c' is incorrect and does not relate to the expected temperature value. Please review the concept and provide a relevant numerical answer."
+        },
+        "Q14": {
+            "answer": "6",
+            "awarded_marks": 0,
+            "max_marks": 0,
+            "feedback": "Your answer is incorrect; the correct author is Vyasa."
+        },
+        "Q13": {
+            "answer": "a",
+            "awarded_marks": 0,
+            "max_marks": 0,
+            "feedback": "Your answer 'a' is incorrect; the correct answer is 'Jupiter'. As this question has a maximum mark of 0, no marks are awarded."
+        },
+        "Q12": {
+            "answer": "b",
+            "awarded_marks": 0,
+            "max_marks": 0,
+            "feedback": "Your answer 'b' is incorrect; the correct value is 4."
+        },
+        "Q11": {
+            "answer": "d",
+            "awarded_marks": 0,
+            "max_marks": 0,
+            "feedback": "The answer provided is incorrect. The correct answer is Paris."
         }
     }
 }
