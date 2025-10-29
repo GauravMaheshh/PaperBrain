@@ -1,240 +1,88 @@
 Student Name,Roll No,Question No,Student Answer,Reference Answer,Max Marks,Awarded Marks,Feedback
-Shivsrijit Verma,AID23B015,Q1,New Delhi,New Delhi,2,2,Your answer is perfectly correct and complete.
-Shivsrijit Verma,AID23B015,Q2,4,4,1,1,"Correct answer, well done!"
-Shivsrijit Verma,AID23B015,Q3,Jupiter,Jupiter,2,2,Excellent! Your answer is perfectly correct and complete.
-Shivsrijit Verma,AID23B015,Q4,Vyasa,Vyasa,3,3,Excellent! Your answer is perfectly correct and complete.
-Shivsrijit Verma,AID23B015,Q5,100°C,100°C,2,2,Excellent! Your answer is perfectly correct and complete.
-Anurag Kumar,AID23B016,Q1,Delhi,New Delhi,2,1,"Your answer is partially correct. Ensure you provide the complete and precise name for the capital, which is 'New Delhi'."
-Anurag Kumar,AID23B016,Q2,4,4,1,1,Your answer is perfectly correct and complete.
-Anurag Kumar,AID23B016,Q3,Saturn,Jupiter,2,0,"The answer is incorrect. Jupiter is the largest planet in our solar system, not Saturn."
-Anurag Kumar,AID23B016,Q4,Vyasa,Vyasa,3,3,Excellent! Your answer is perfectly correct and complete.
-Anurag Kumar,AID23B016,Q5,90°C,100°C,2,0,The correct boiling point of water is 100°C. Please review this fundamental concept.
-Priya Sharma,AID23B017,Q1,New Delhi,New Delhi,2,2,Excellent! Your answer is correct and complete.
-Priya Sharma,AID23B017,Q2,5,4,1,0,"Error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
+STUDENT_NAME_HERE,ROLL_NO_HERE,Q1,a,c,2,0,The answer is incorrect. Please review the topic to identify the correct option.
+STUDENT_NAME_HERE,ROLL_NO_HERE,Q2,c,b,1,0,The answer is incorrect. Please review the material to understand why 'b' is the correct option.
+STUDENT_NAME_HERE,ROLL_NO_HERE,Q3,b,a,2,0,The answer provided is incorrect and does not match the reference. Please review the relevant concept.
+STUDENT_NAME_HERE,ROLL_NO_HERE,Q4,4,c,3,0,"API Error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10
-Please retry in 23.835522252s. [violations {
-}
-, links {
+Please retry in 47.706189901s. [links {
   description: ""Learn more about Gemini API quotas""
   url: ""https://ai.google.dev/gemini-api/docs/rate-limits""
 }
+, violations {
+  quota_metric: ""generativelanguage.googleapis.com/generate_content_free_tier_requests""
+  quota_id: ""GenerateRequestsPerMinutePerProjectPerModel-FreeTier""
+  quota_dimensions {
+    key: ""model""
+    value: ""gemini-2.5-flash""
+  }
+  quota_dimensions {
+    key: ""location""
+    value: ""global""
+  }
+  quota_value: 10
+}
 , retry_delay {
-  seconds: 23
+  seconds: 47
 }
 ]"
-Priya Sharma,AID23B017,Q3,Jupiter,Jupiter,2,0,"Error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
+STUDENT_NAME_HERE,ROLL_NO_HERE,Q5,c,a,2,0,"API Error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10
-Please retry in 23.415512087s. [violations {
-}
-, links {
+Please retry in 47.383385038s. [links {
   description: ""Learn more about Gemini API quotas""
   url: ""https://ai.google.dev/gemini-api/docs/rate-limits""
 }
+, violations {
+  quota_metric: ""generativelanguage.googleapis.com/generate_content_free_tier_requests""
+  quota_id: ""GenerateRequestsPerMinutePerProjectPerModel-FreeTier""
+  quota_dimensions {
+    key: ""model""
+    value: ""gemini-2.5-flash""
+  }
+  quota_dimensions {
+    key: ""location""
+    value: ""global""
+  }
+  quota_value: 10
+}
 , retry_delay {
-  seconds: 23
+  seconds: 47
 }
 ]"
-Priya Sharma,AID23B017,Q4,Vyas,Vyasa,3,0,"Error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
+STUDENT_NAME_HERE,ROLL_NO_HERE,Q6,b,c,2,0,The chosen option 'b' is incorrect. The correct answer is 'c'.
+STUDENT_NAME_HERE,ROLL_NO_HERE,Q7,5,5,2,0,"API Error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10
-Please retry in 22.803732851s. [violations {
-}
-, links {
+Please retry in 45.046289355s. [links {
   description: ""Learn more about Gemini API quotas""
   url: ""https://ai.google.dev/gemini-api/docs/rate-limits""
 }
-, retry_delay {
-  seconds: 22
-}
-]"
-Priya Sharma,AID23B017,Q5,100°C,100°C,2,0,"Error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10
-Please retry in 22.389432391s. [violations {
-}
-, links {
-  description: ""Learn more about Gemini API quotas""
-  url: ""https://ai.google.dev/gemini-api/docs/rate-limits""
-}
-, retry_delay {
-  seconds: 22
-}
-]"
-Rohit Singh,AID23B018,Q1,New Delhi,New Delhi,2,0,"Error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10
-Please retry in 21.907071435s. [violations {
-}
-, links {
-  description: ""Learn more about Gemini API quotas""
-  url: ""https://ai.google.dev/gemini-api/docs/rate-limits""
+, violations {
+  quota_metric: ""generativelanguage.googleapis.com/generate_content_free_tier_requests""
+  quota_id: ""GenerateRequestsPerMinutePerProjectPerModel-FreeTier""
+  quota_dimensions {
+    key: ""model""
+    value: ""gemini-2.5-flash""
+  }
+  quota_dimensions {
+    key: ""location""
+    value: ""global""
+  }
+  quota_value: 10
 }
 , retry_delay {
-  seconds: 21
+  seconds: 45
 }
 ]"
-Rohit Singh,AID23B018,Q2,4,4,1,1,Excellent! Your answer is correct and concise.
-Rohit Singh,AID23B018,Q3,Jupiter,Jupiter,2,0,"Error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10
-Please retry in 19.118676826s. [violations {
-}
-, links {
-  description: ""Learn more about Gemini API quotas""
-  url: ""https://ai.google.dev/gemini-api/docs/rate-limits""
-}
-, retry_delay {
-  seconds: 19
-}
-]"
-Rohit Singh,AID23B018,Q4,Vyasa,Vyasa,3,0,"Error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10
-Please retry in 18.670135591s. [violations {
-}
-, links {
-  description: ""Learn more about Gemini API quotas""
-  url: ""https://ai.google.dev/gemini-api/docs/rate-limits""
-}
-, retry_delay {
-  seconds: 18
-}
-]"
-Rohit Singh,AID23B018,Q5,100°C,100°C,2,0,"Error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10
-Please retry in 18.043550857s. [violations {
-}
-, links {
-  description: ""Learn more about Gemini API quotas""
-  url: ""https://ai.google.dev/gemini-api/docs/rate-limits""
-}
-, retry_delay {
-  seconds: 18
-}
-]"
-Neha Verma,AID23B019,Q1,Delhi,New Delhi,2,0,"Error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10
-Please retry in 17.577419926s. [violations {
-}
-, links {
-  description: ""Learn more about Gemini API quotas""
-  url: ""https://ai.google.dev/gemini-api/docs/rate-limits""
-}
-, retry_delay {
-  seconds: 17
-}
-]"
-Neha Verma,AID23B019,Q2,4,4,1,0,"Error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10
-Please retry in 17.082273764s. [violations {
-}
-, links {
-  description: ""Learn more about Gemini API quotas""
-  url: ""https://ai.google.dev/gemini-api/docs/rate-limits""
-}
-, retry_delay {
-  seconds: 17
-}
-]"
-Neha Verma,AID23B019,Q3,Jupiter,Jupiter,2,0,"Error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10
-Please retry in 16.485338138s. [violations {
-}
-, links {
-  description: ""Learn more about Gemini API quotas""
-  url: ""https://ai.google.dev/gemini-api/docs/rate-limits""
-}
-, retry_delay {
-  seconds: 16
-}
-]"
-Neha Verma,AID23B019,Q4,Vyasa,Vyasa,3,0,"Error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10
-Please retry in 16.007709163s. [violations {
-}
-, links {
-  description: ""Learn more about Gemini API quotas""
-  url: ""https://ai.google.dev/gemini-api/docs/rate-limits""
-}
-, retry_delay {
-  seconds: 16
-}
-]"
-Neha Verma,AID23B019,Q5,100°C,100°C,2,0,"Error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
-* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10
-Please retry in 15.525510697s. [violations {
-}
-, links {
-  description: ""Learn more about Gemini API quotas""
-  url: ""https://ai.google.dev/gemini-api/docs/rate-limits""
-}
-, retry_delay {
-  seconds: 15
-}
-]"
-Shivsrijit Verma,AID23B015,Q1,New Delhi,New Delhi,2,2,Excellent! The answer is perfectly correct and matches the reference.
-Shivsrijit Verma,AID23B015,Q2,4,4,1,1,Excellent! Your answer is perfectly correct and matches the reference.
-Shivsrijit Verma,AID23B015,Q3,Jupiter,Jupiter,2,2,"Excellent answer, it is completely correct."
-Shivsrijit Verma,AID23B015,Q4,Vyasa,Vyasa,3,3,Excellent answer! You have correctly identified the author.
-Shivsrijit Verma,AID23B015,Q5,100°C,100°C,2,2,Your answer is perfectly correct and complete.
-Shivsrijit Verma,AID23B015,Q1,New Delhi,New Delhi,2,2,Excellent! Your answer is perfectly correct and matches the reference.
-Shivsrijit Verma,AID23B015,Q2,4,4,1,1,Correct answer. Well done!
-Shivsrijit Verma,AID23B015,Q3,Jupiter,Jupiter,2,2,Excellent work! Your answer is perfectly correct and precise.
-Shivsrijit Verma,AID23B015,Q4,Vyasa,Vyasa,3,3,Your answer is perfectly correct and complete.
-Shivsrijit Verma,AID23B015,Q5,100°C,100°C,2,2,Your answer is perfectly correct and complete.
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q1,ca,New Delhi,2,0,The answer is incorrect. Please review the capital of India.
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q2,6,4,1,0,The answer provided is incorrect. Please recheck your calculation.
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q3,a,Jupiter,2,0,The answer provided is incorrect. Please review the topic to identify the correct celestial body.
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q4,c,Vyasa,3,0,The answer 'c' is incorrect. Please provide the correct name as per the question context.
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q5,a,100°C,2,0,The answer 'a' is incorrect. Please review the correct boiling point of water.
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q6,b,N/A,0,0,No reference answer found
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q7,5,N/A,0,0,No reference answer found
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q1,New Delhi,New Delhi,2,2,"Correct answer, well done!"
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q2,4,4,1,1,The answer is correct and complete.
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q3,Jupiter,Jupiter,2,2,Excellent! Your answer is perfectly correct and complete.
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q4,Vyasa,Vyasa,3,3,Excellent answer! You have correctly identified Vyasa.
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q5,101°C,100°C,2,0,The answer provided is incorrect. Ensure precision in stating factual values like boiling points.
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q1,ca,New Delhi,2,0,The answer is incorrect. Please review the capital of India.
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q2,6,4,1,0,The answer provided is incorrect. Please re-check your calculation.
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q3,,Jupiter,2,0,No answer was provided. Please ensure you attempt all questions.
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q4,1c1,Vyasa,3,0,Your answer is incorrect. The author of the Mahabharata is Vyasa.
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q5,ab,100°C,2,0,"Your answer is incorrect. The correct answer is 100°C, which is the boiling point of water."
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q6,b,N/A,0,0,No reference answer found
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q7,5,N/A,0,0,No reference answer found
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q1,a,New Delhi,2,0,The answer 'a' is incorrect. Please review the capital of India.
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q2,c,4,1,0,The answer provided is incorrect. Please ensure your response matches the expected numerical value.
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q3,b,Jupiter,2,0,The answer 'b' is incorrect and does not match the reference. Please provide the correct factual answer.
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q4,4,Vyasa,3,0,The answer provided is incorrect and does not match the reference answer. Please ensure you provide the correct factual information relevant to the question.
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q5,c,100°C,2,0,"Your answer is incorrect and incomplete. Please provide the full temperature value, including the number and unit."
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q6,b,N/A,0,0,No reference answer found
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q7,5,N/A,0,0,No reference answer found
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q8,a,Jupiter,0,0,"The answer 'a' is incorrect. Even though no marks are allocated for this question, ensure your answers are accurate."
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q9,c,Vyasa,0,0,The answer 'c' is incorrect. The correct answer is Vyasa.
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q10,b,100°C,0,0,"The answer 'b' is incorrect and does not match the reference. However, this question carries no marks."
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q11,4,Paris,0,0,Your answer is incorrect and does not match the reference. The correct answer is Paris.
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q12,c,4,0,0,No marks can be awarded as the maximum marks for this question is 0.
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q13,b,Jupiter,0,0,Your answer 'b' is incorrect; the correct answer is 'Jupiter'. This question carried no marks.
-STUDENT_NAME_HERE,ROLL_NO_HERE,Q14,5,Vyasa,0,0,Your answer '5' is incorrect. The author of Mahabharata is Vyasa.
-STUDENT_NAME_HERE,1121,Q1,ca,New Delhi,2,0,The answer is incorrect. Please review the capital city of India.
-STUDENT_NAME_HERE,1121,Q2,b,4,1,0,The answer provided is incorrect. Please review the question and the correct solution.
-STUDENT_NAME_HERE,1121,Q3,a,Jupiter,2,0,The answer 'a' is incorrect. Please refer to the correct name for the largest planet.
-STUDENT_NAME_HERE,1121,Q4,c,Vyasa,3,0,The answer 'c' is incorrect. Please review the correct author of the Mahabharata.
-STUDENT_NAME_HERE,1121,Q5,a,100°C,2,0,The answer 'a' is incorrect. Please provide the correct temperature for the boiling point of water.
-STUDENT_NAME_HERE,1121,Q6,b,Paris,0,0,The answer 'b' is incorrect. The correct answer is 'Paris'.
-STUDENT_NAME_HERE,1121,Q7,5,4,0,0,Your answer of 5 is incorrect; the correct answer is 4. This question carried no marks.
-STUDENT_NAME_HERE,1121,Q8,a,Jupiter,0,0,Your answer 'a' is incorrect and does not match the reference answer 'Jupiter'.
-STUDENT_NAME_HERE,1121,Q9,c,Vyasa,0,0,The answer 'c' is incorrect. The correct answer is Vyasa.
-STUDENT_NAME_HERE,1121,Q10,b,100°C,0,0,The answer 'b' is incorrect and irrelevant to the reference answer. Please provide a factual and relevant response.
-STUDENT_NAME_HERE,1121,Q11,4,Paris,0,0,Your answer is incorrect. No marks can be awarded as the maximum marks for this question is 0.
-STUDENT_NAME_HERE,1121,Q12,c,4,0,0,The answer 'c' is incorrect. The correct answer is '4'. Please review basic arithmetic.
-STUDENT_NAME_HERE,1121,Q13,b,Jupiter,0,0,The provided answer 'b' is incorrect and does not match the reference answer 'Jupiter'.
-STUDENT_NAME_HERE,1121,Q14,5,Vyasa,0,0,Your answer '5' is incorrect. The expected answer was 'Vyasa'.
-STUDENT_NAME_HERE,1121,Q8,a,Jupiter,0,0,The answer 'a' is incorrect and does not match the reference answer 'Jupiter'.
-STUDENT_NAME_HERE,1121,Q9,c,Vyasa,0,0,The answer 'c' is incorrect. The correct author is Vyasa.
-STUDENT_NAME_HERE,1121,Q10,b,100°C,0,0,"The provided answer 'b' is incorrect and does not relate to the reference answer '100°C'. As the maximum marks for this question is 0, no marks are awarded."
-STUDENT_NAME_HERE,1121,Q11,4,Paris,0,0,The student's answer '4' is incorrect; the correct answer is 'Paris'. There is no conceptual understanding demonstrated for this specific question.
-STUDENT_NAME_HERE,1121,Q12,c,4,0,0,"The student's answer 'c' is incorrect. The correct answer is 4, as indicated by the reference and simple arithmetic."
-STUDENT_NAME_HERE,1121,Q13,b,Jupiter,0,0,The answer 'b' is incorrect. The correct answer is 'Jupiter'.
-STUDENT_NAME_HERE,1121,Q14,5,Vyasa,0,0,The student's answer '5' is incorrect and does not match the reference answer 'Vyasa'. No marks can be awarded as the maximum marks for this question is 0.
-STUDENT_NAME_HERE,1121,Q1,ca,New Delhi,2,0,"Your answer ""ca"" is incorrect. The correct capital of India is New Delhi."
-STUDENT_NAME_HERE,1121,Q2,b,4,1,0,"Your answer 'b' is incorrect. The correct answer is '4'. Please re-evaluate the problem, likely simple arithmetic given the context."
-STUDENT_NAME_HERE,1121,Q3,a,Jupiter,2,0,Your answer 'a' is incorrect. The correct answer is 'Jupiter'.
-STUDENT_NAME_HERE,1121,Q4,c,Vyasa,3,0,"The answer 'c' is incorrect. The correct author is Vyasa, as stated in the reference material."
-STUDENT_NAME_HERE,1121,Q5,a,100°C,2,0,The answer provided is incorrect. Please review the topic related to the boiling point of water.
-STUDENT_NAME_HERE,1121,Q6,b,Paris,0,0,"The answer 'b' is incorrect. Please provide the correct answer, 'Paris'."
-STUDENT_NAME_HERE,1121,Q7,5,4,0,0,"The answer is incorrect. Even though the question is about simple arithmetic, the maximum marks are 0, so no marks can be awarded."
+STUDENT_NAME_HERE,ROLL_NO_HERE,Q1,ca,c,2,0,Your answer includes an additional character ('a') which makes it incorrect. Please ensure your response precisely matches the required answer.
+STUDENT_NAME_HERE,ROLL_NO_HERE,Q2,b,b,1,1,Excellent. Your answer is correct and matches the reference.
+STUDENT_NAME_HERE,ROLL_NO_HERE,Q3,a,a,2,2,Excellent answer. It is correct and complete.
+STUDENT_NAME_HERE,ROLL_NO_HERE,Q4,c,c,3,3,Your answer is perfectly correct and matches the reference. Well done!
+STUDENT_NAME_HERE,ROLL_NO_HERE,Q5,a,a,2,2,"Your answer is perfectly accurate and complete, matching the reference."
+STUDENT_NAME_HERE,ROLL_NO_HERE,Q6,b,c,2,0,The answer provided is incorrect. Please review the relevant material to identify the correct option.
+STUDENT_NAME_HERE,ROLL_NO_HERE,Q7,5,5,2,2,Excellent answer. It is perfectly correct and complete.
+STUDENT_NAME_HERE,ROLL_NO_HERE,Q8,a,c,2,0,The correct option is 'c'. Please review the concept to select the correct answer.
+STUDENT_NAME_HERE,ROLL_NO_HERE,Q9,c,b,1,0,The answer 'c' is incorrect. Please review the correct option 'b'.
+STUDENT_NAME_HERE,ROLL_NO_HERE,Q10,b,a,2,0,The answer provided is incorrect. Please review the relevant topic to understand the correct concept.
+STUDENT_NAME_HERE,ROLL_NO_HERE,Q11,4,c,3,0,The answer provided is incorrect. Please review the relevant concept to identify the correct option.
+STUDENT_NAME_HERE,ROLL_NO_HERE,Q12,c,a,2,0,The answer provided is incorrect. Please review the material to ensure you understand the correct concept.
+STUDENT_NAME_HERE,ROLL_NO_HERE,Q13,b,c,2,0,The answer provided is incorrect. Please review the material for the correct option.
+STUDENT_NAME_HERE,ROLL_NO_HERE,Q14,5,5,2,2,Excellent! Your answer is perfectly correct and matches the reference.

@@ -1,94 +1,94 @@
 {
     "student_info": {
         "name": "STUDENT_NAME_HERE",
-        "roll_no": "1121"
+        "roll_no": "ROLL_NO_HERE"
     },
-    "total_awarded_marks": 0,
-    "total_possible_marks": 10,
+    "total_awarded_marks": 12,
+    "total_possible_marks": 28,
     "answers": {
-        "Q8": {
-            "answer": "a",
-            "awarded_marks": 0,
-            "max_marks": 0,
-            "feedback": "The answer 'a' is incorrect and does not match the reference answer 'Jupiter'."
-        },
-        "Q9": {
-            "answer": "c",
-            "awarded_marks": 0,
-            "max_marks": 0,
-            "feedback": "The answer 'c' is incorrect. The correct author is Vyasa."
-        },
-        "Q10": {
-            "answer": "b",
-            "awarded_marks": 0,
-            "max_marks": 0,
-            "feedback": "The provided answer 'b' is incorrect and does not relate to the reference answer '100°C'. As the maximum marks for this question is 0, no marks are awarded."
-        },
-        "Q11": {
-            "answer": "4",
-            "awarded_marks": 0,
-            "max_marks": 0,
-            "feedback": "The student's answer '4' is incorrect; the correct answer is 'Paris'. There is no conceptual understanding demonstrated for this specific question."
-        },
-        "Q12": {
-            "answer": "c",
-            "awarded_marks": 0,
-            "max_marks": 0,
-            "feedback": "The student's answer 'c' is incorrect. The correct answer is 4, as indicated by the reference and simple arithmetic."
-        },
-        "Q13": {
-            "answer": "b",
-            "awarded_marks": 0,
-            "max_marks": 0,
-            "feedback": "The answer 'b' is incorrect. The correct answer is 'Jupiter'."
-        },
-        "Q14": {
-            "answer": "5",
-            "awarded_marks": 0,
-            "max_marks": 0,
-            "feedback": "The student's answer '5' is incorrect and does not match the reference answer 'Vyasa'. No marks can be awarded as the maximum marks for this question is 0."
-        },
         "Q1": {
             "answer": "ca",
             "awarded_marks": 0,
             "max_marks": 2,
-            "feedback": "Your answer \"ca\" is incorrect. The correct capital of India is New Delhi."
+            "feedback": "Your answer includes an additional character ('a') which makes it incorrect. Please ensure your response precisely matches the required answer."
         },
         "Q2": {
             "answer": "b",
-            "awarded_marks": 0,
+            "awarded_marks": 1,
             "max_marks": 1,
-            "feedback": "Your answer 'b' is incorrect. The correct answer is '4'. Please re-evaluate the problem, likely simple arithmetic given the context."
+            "feedback": "Excellent. Your answer is correct and matches the reference."
         },
         "Q3": {
             "answer": "a",
-            "awarded_marks": 0,
+            "awarded_marks": 2,
             "max_marks": 2,
-            "feedback": "Your answer 'a' is incorrect. The correct answer is 'Jupiter'."
+            "feedback": "Excellent answer. It is correct and complete."
         },
         "Q4": {
             "answer": "c",
-            "awarded_marks": 0,
+            "awarded_marks": 3,
             "max_marks": 3,
-            "feedback": "The answer 'c' is incorrect. The correct author is Vyasa, as stated in the reference material."
+            "feedback": "Your answer is perfectly correct and matches the reference. Well done!"
         },
         "Q5": {
             "answer": "a",
-            "awarded_marks": 0,
+            "awarded_marks": 2,
             "max_marks": 2,
-            "feedback": "The answer provided is incorrect. Please review the topic related to the boiling point of water."
+            "feedback": "Your answer is perfectly accurate and complete, matching the reference."
         },
         "Q6": {
             "answer": "b",
             "awarded_marks": 0,
-            "max_marks": 0,
-            "feedback": "The answer 'b' is incorrect. Please provide the correct answer, 'Paris'."
+            "max_marks": 2,
+            "feedback": "The answer provided is incorrect. Please review the relevant material to identify the correct option."
         },
         "Q7": {
             "answer": "5",
+            "awarded_marks": 2,
+            "max_marks": 2,
+            "feedback": "Excellent answer. It is perfectly correct and complete."
+        },
+        "Q8": {
+            "answer": "a",
             "awarded_marks": 0,
-            "max_marks": 0,
-            "feedback": "The answer is incorrect. Even though the question is about simple arithmetic, the maximum marks are 0, so no marks can be awarded."
+            "max_marks": 2,
+            "feedback": "The correct option is 'c'. Please review the concept to select the correct answer."
+        },
+        "Q9": {
+            "answer": "c",
+            "awarded_marks": 0,
+            "max_marks": 1,
+            "feedback": "The answer 'c' is incorrect. Please review the correct option 'b'."
+        },
+        "Q10": {
+            "answer": "b",
+            "awarded_marks": 0,
+            "max_marks": 2,
+            "feedback": "The answer provided is incorrect. Please review the relevant topic to understand the correct concept."
+        },
+        "Q11": {
+            "answer": "4",
+            "awarded_marks": 0,
+            "max_marks": 3,
+            "feedback": "The answer provided is incorrect. Please review the relevant concept to identify the correct option."
+        },
+        "Q12": {
+            "answer": "c",
+            "awarded_marks": 0,
+            "max_marks": 2,
+            "feedback": "The answer provided is incorrect. Please review the material to ensure you understand the correct concept."
+        },
+        "Q13": {
+            "answer": "b",
+            "awarded_marks": 0,
+            "max_marks": 2,
+            "feedback": "The answer provided is incorrect. Please review the material for the correct option."
+        },
+        "Q14": {
+            "answer": "5",
+            "awarded_marks": 2,
+            "max_marks": 2,
+            "feedback": "Excellent! Your answer is perfectly correct and matches the reference."
         }
     }
 }

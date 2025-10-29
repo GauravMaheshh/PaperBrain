@@ -1,551 +1,100 @@
 {
     "students": [
         {
-            "student_info": {
-                "name": "Shivsrijit Verma",
-                "roll_no": "AID23B015"
-            },
-            "answers": {
-                "Q1": "New Delhi",
-                "Q2": "4",
-                "Q3": "Jupiter",
-                "Q4": "Vyasa",
-                "Q5": "100°C"
-            }
+            "student_info": {},
+            "answers": {}
         },
         {
             "student_info": {
-                "name": "Anurag Kumar",
-                "roll_no": "AID23B016"
+                "name": "STUDENT_NAME_HERE",
+                "roll_no": "ROLL_NO_HERE"
             },
-            "answers": {
-                "Q1": "Delhi",
-                "Q2": "4",
-                "Q3": "Saturn",
-                "Q4": "Vyasa",
-                "Q5": "90°C"
-            }
-        },
-        {
-            "student_info": {
-                "name": "Priya Sharma",
-                "roll_no": "AID23B017"
-            },
-            "answers": {
-                "Q1": "New Delhi",
-                "Q2": "5",
-                "Q3": "Jupiter",
-                "Q4": "Vyas",
-                "Q5": "100°C"
-            }
-        },
-        {
-            "student_info": {
-                "name": "Rohit Singh",
-                "roll_no": "AID23B018"
-            },
-            "answers": {
-                "Q1": "New Delhi",
-                "Q2": "4",
-                "Q3": "Jupiter",
-                "Q4": "Vyasa",
-                "Q5": "100°C"
-            }
-        },
-        {
-            "student_info": {
-                "name": "Neha Verma",
-                "roll_no": "AID23B019"
-            },
-            "answers": {
-                "Q1": "Delhi",
-                "Q2": "4",
-                "Q3": "Jupiter",
-                "Q4": "Vyasa",
-                "Q5": "100°C"
-            }
-        },
-        {
-            "student_info": {
-                "name": "Shivsrijit Verma",
-                "roll_no": "AID23B015"
-            },
-            "total_awarded_marks": 10,
-            "total_possible_marks": 10,
-            "evaluation_results": [
-                {
-                    "question_no": "Q1",
-                    "student_answer": "New Delhi",
-                    "reference_answer": "New Delhi",
-                    "max_marks": 2,
-                    "awarded_marks": 2,
-                    "feedback": "Excellent! The answer is perfectly correct and matches the reference."
-                },
-                {
-                    "question_no": "Q2",
-                    "student_answer": "4",
-                    "reference_answer": "4",
-                    "max_marks": 1,
-                    "awarded_marks": 1,
-                    "feedback": "Excellent! Your answer is perfectly correct and matches the reference."
-                },
-                {
-                    "question_no": "Q3",
-                    "student_answer": "Jupiter",
-                    "reference_answer": "Jupiter",
-                    "max_marks": 2,
-                    "awarded_marks": 2,
-                    "feedback": "Excellent answer, it is completely correct."
-                },
-                {
-                    "question_no": "Q4",
-                    "student_answer": "Vyasa",
-                    "reference_answer": "Vyasa",
-                    "max_marks": 3,
-                    "awarded_marks": 3,
-                    "feedback": "Excellent answer! You have correctly identified the author."
-                },
-                {
-                    "question_no": "Q5",
-                    "student_answer": "100°C",
-                    "reference_answer": "100°C",
-                    "max_marks": 2,
-                    "awarded_marks": 2,
-                    "feedback": "Your answer is perfectly correct and complete."
-                }
-            ]
-        },
-        {
-            "student_info": {
-                "name": "Shivsrijit Verma",
-                "roll_no": "AID23B015"
-            },
-            "total_awarded_marks": 10,
-            "total_possible_marks": 10,
+            "total_awarded_marks": 12,
+            "total_possible_marks": 28,
             "answers": {
                 "Q1": {
-                    "answer": "New Delhi",
+                    "answer": "ca",
+                    "awarded_marks": 0,
+                    "max_marks": 2,
+                    "feedback": "Your answer includes an additional character ('a') which makes it incorrect. Please ensure your response precisely matches the required answer."
+                },
+                "Q2": {
+                    "answer": "b",
+                    "awarded_marks": 1,
+                    "max_marks": 1,
+                    "feedback": "Excellent. Your answer is correct and matches the reference."
+                },
+                "Q3": {
+                    "answer": "a",
+                    "awarded_marks": 2,
+                    "max_marks": 2,
+                    "feedback": "Excellent answer. It is correct and complete."
+                },
+                "Q4": {
+                    "answer": "c",
+                    "awarded_marks": 3,
+                    "max_marks": 3,
+                    "feedback": "Your answer is perfectly correct and matches the reference. Well done!"
+                },
+                "Q5": {
+                    "answer": "a",
+                    "awarded_marks": 2,
+                    "max_marks": 2,
+                    "feedback": "Your answer is perfectly accurate and complete, matching the reference."
+                },
+                "Q6": {
+                    "answer": "b",
+                    "awarded_marks": 0,
+                    "max_marks": 2,
+                    "feedback": "The answer provided is incorrect. Please review the relevant material to identify the correct option."
+                },
+                "Q7": {
+                    "answer": "5",
+                    "awarded_marks": 2,
+                    "max_marks": 2,
+                    "feedback": "Excellent answer. It is perfectly correct and complete."
+                },
+                "Q8": {
+                    "answer": "a",
+                    "awarded_marks": 0,
+                    "max_marks": 2,
+                    "feedback": "The correct option is 'c'. Please review the concept to select the correct answer."
+                },
+                "Q9": {
+                    "answer": "c",
+                    "awarded_marks": 0,
+                    "max_marks": 1,
+                    "feedback": "The answer 'c' is incorrect. Please review the correct option 'b'."
+                },
+                "Q10": {
+                    "answer": "b",
+                    "awarded_marks": 0,
+                    "max_marks": 2,
+                    "feedback": "The answer provided is incorrect. Please review the relevant topic to understand the correct concept."
+                },
+                "Q11": {
+                    "answer": "4",
+                    "awarded_marks": 0,
+                    "max_marks": 3,
+                    "feedback": "The answer provided is incorrect. Please review the relevant concept to identify the correct option."
+                },
+                "Q12": {
+                    "answer": "c",
+                    "awarded_marks": 0,
+                    "max_marks": 2,
+                    "feedback": "The answer provided is incorrect. Please review the material to ensure you understand the correct concept."
+                },
+                "Q13": {
+                    "answer": "b",
+                    "awarded_marks": 0,
+                    "max_marks": 2,
+                    "feedback": "The answer provided is incorrect. Please review the material for the correct option."
+                },
+                "Q14": {
+                    "answer": "5",
                     "awarded_marks": 2,
                     "max_marks": 2,
                     "feedback": "Excellent! Your answer is perfectly correct and matches the reference."
-                },
-                "Q2": {
-                    "answer": "4",
-                    "awarded_marks": 1,
-                    "max_marks": 1,
-                    "feedback": "Correct answer. Well done!"
-                },
-                "Q3": {
-                    "answer": "Jupiter",
-                    "awarded_marks": 2,
-                    "max_marks": 2,
-                    "feedback": "Excellent work! Your answer is perfectly correct and precise."
-                },
-                "Q4": {
-                    "answer": "Vyasa",
-                    "awarded_marks": 3,
-                    "max_marks": 3,
-                    "feedback": "Your answer is perfectly correct and complete."
-                },
-                "Q5": {
-                    "answer": "100°C",
-                    "awarded_marks": 2,
-                    "max_marks": 2,
-                    "feedback": "Your answer is perfectly correct and complete."
-                }
-            }
-        },
-        {
-            "student_info": {
-                "name": "STUDENT_NAME_HERE",
-                "roll_no": "ROLL_NO_HERE"
-            },
-            "total_awarded_marks": 0,
-            "total_possible_marks": 10,
-            "answers": {
-                "Q1": {
-                    "answer": "ca",
-                    "awarded_marks": 0,
-                    "max_marks": 2,
-                    "feedback": "The answer is incorrect. Please review the capital of India."
-                },
-                "Q2": {
-                    "answer": "6",
-                    "awarded_marks": 0,
-                    "max_marks": 1,
-                    "feedback": "The answer provided is incorrect. Please recheck your calculation."
-                },
-                "Q3": {
-                    "answer": "a",
-                    "awarded_marks": 0,
-                    "max_marks": 2,
-                    "feedback": "The answer provided is incorrect. Please review the topic to identify the correct celestial body."
-                },
-                "Q4": {
-                    "answer": "c",
-                    "awarded_marks": 0,
-                    "max_marks": 3,
-                    "feedback": "The answer 'c' is incorrect. Please provide the correct name as per the question context."
-                },
-                "Q5": {
-                    "answer": "a",
-                    "awarded_marks": 0,
-                    "max_marks": 2,
-                    "feedback": "The answer 'a' is incorrect. Please review the correct boiling point of water."
-                },
-                "Q6": {
-                    "answer": "b",
-                    "awarded_marks": 0,
-                    "max_marks": 0,
-                    "feedback": "No reference answer found"
-                },
-                "Q7": {
-                    "answer": "5",
-                    "awarded_marks": 0,
-                    "max_marks": 0,
-                    "feedback": "No reference answer found"
-                }
-            }
-        },
-        {
-            "student_info": {
-                "name": "STUDENT_NAME_HERE",
-                "roll_no": "ROLL_NO_HERE"
-            },
-            "total_awarded_marks": 8,
-            "total_possible_marks": 10,
-            "answers": {
-                "Q1": {
-                    "answer": "New Delhi",
-                    "awarded_marks": 2,
-                    "max_marks": 2,
-                    "feedback": "Correct answer, well done!"
-                },
-                "Q2": {
-                    "answer": "4",
-                    "awarded_marks": 1,
-                    "max_marks": 1,
-                    "feedback": "The answer is correct and complete."
-                },
-                "Q3": {
-                    "answer": "Jupiter",
-                    "awarded_marks": 2,
-                    "max_marks": 2,
-                    "feedback": "Excellent! Your answer is perfectly correct and complete."
-                },
-                "Q4": {
-                    "answer": "Vyasa",
-                    "awarded_marks": 3,
-                    "max_marks": 3,
-                    "feedback": "Excellent answer! You have correctly identified Vyasa."
-                },
-                "Q5": {
-                    "answer": "101°C",
-                    "awarded_marks": 0,
-                    "max_marks": 2,
-                    "feedback": "The answer provided is incorrect. Ensure precision in stating factual values like boiling points."
-                }
-            }
-        },
-        {
-            "student_info": {
-                "name": "STUDENT_NAME_HERE",
-                "roll_no": "ROLL_NO_HERE"
-            },
-            "total_awarded_marks": 0,
-            "total_possible_marks": 10,
-            "answers": {
-                "Q1": {
-                    "answer": "a",
-                    "awarded_marks": 0,
-                    "max_marks": 2,
-                    "feedback": "The answer 'a' is incorrect. Please review the capital of India."
-                },
-                "Q2": {
-                    "answer": "c",
-                    "awarded_marks": 0,
-                    "max_marks": 1,
-                    "feedback": "The answer provided is incorrect. Please ensure your response matches the expected numerical value."
-                },
-                "Q3": {
-                    "answer": "b",
-                    "awarded_marks": 0,
-                    "max_marks": 2,
-                    "feedback": "The answer 'b' is incorrect and does not match the reference. Please provide the correct factual answer."
-                },
-                "Q4": {
-                    "answer": "4",
-                    "awarded_marks": 0,
-                    "max_marks": 3,
-                    "feedback": "The answer provided is incorrect and does not match the reference answer. Please ensure you provide the correct factual information relevant to the question."
-                },
-                "Q5": {
-                    "answer": "c",
-                    "awarded_marks": 0,
-                    "max_marks": 2,
-                    "feedback": "Your answer is incorrect and incomplete. Please provide the full temperature value, including the number and unit."
-                },
-                "Q6": {
-                    "answer": "b",
-                    "awarded_marks": 0,
-                    "max_marks": 0,
-                    "feedback": "No reference answer found"
-                },
-                "Q7": {
-                    "answer": "5",
-                    "awarded_marks": 0,
-                    "max_marks": 0,
-                    "feedback": "No reference answer found"
-                }
-            }
-        },
-        {
-            "student_info": {
-                "name": "STUDENT_NAME_HERE",
-                "roll_no": "ROLL_NO_HERE"
-            },
-            "total_awarded_marks": 0,
-            "total_possible_marks": 0,
-            "answers": {
-                "Q8": {
-                    "answer": "a",
-                    "awarded_marks": 0,
-                    "max_marks": 0,
-                    "feedback": "The answer 'a' is incorrect. Even though no marks are allocated for this question, ensure your answers are accurate."
-                },
-                "Q9": {
-                    "answer": "c",
-                    "awarded_marks": 0,
-                    "max_marks": 0,
-                    "feedback": "The answer 'c' is incorrect. The correct answer is Vyasa."
-                },
-                "Q10": {
-                    "answer": "b",
-                    "awarded_marks": 0,
-                    "max_marks": 0,
-                    "feedback": "The answer 'b' is incorrect and does not match the reference. However, this question carries no marks."
-                },
-                "Q11": {
-                    "answer": "4",
-                    "awarded_marks": 0,
-                    "max_marks": 0,
-                    "feedback": "Your answer is incorrect and does not match the reference. The correct answer is Paris."
-                },
-                "Q12": {
-                    "answer": "c",
-                    "awarded_marks": 0,
-                    "max_marks": 0,
-                    "feedback": "No marks can be awarded as the maximum marks for this question is 0."
-                },
-                "Q13": {
-                    "answer": "b",
-                    "awarded_marks": 0,
-                    "max_marks": 0,
-                    "feedback": "Your answer 'b' is incorrect; the correct answer is 'Jupiter'. This question carried no marks."
-                },
-                "Q14": {
-                    "answer": "5",
-                    "awarded_marks": 0,
-                    "max_marks": 0,
-                    "feedback": "Your answer '5' is incorrect. The author of Mahabharata is Vyasa."
-                }
-            }
-        },
-        {
-            "student_info": {
-                "name": "STUDENT_NAME_HERE",
-                "roll_no": "1121"
-            },
-            "total_awarded_marks": 0,
-            "total_possible_marks": 10,
-            "answers": {
-                "Q1": {
-                    "answer": "ca",
-                    "awarded_marks": 0,
-                    "max_marks": 2,
-                    "feedback": "The answer is incorrect. Please review the capital city of India."
-                },
-                "Q2": {
-                    "answer": "b",
-                    "awarded_marks": 0,
-                    "max_marks": 1,
-                    "feedback": "The answer provided is incorrect. Please review the question and the correct solution."
-                },
-                "Q3": {
-                    "answer": "a",
-                    "awarded_marks": 0,
-                    "max_marks": 2,
-                    "feedback": "The answer 'a' is incorrect. Please refer to the correct name for the largest planet."
-                },
-                "Q4": {
-                    "answer": "c",
-                    "awarded_marks": 0,
-                    "max_marks": 3,
-                    "feedback": "The answer 'c' is incorrect. Please review the correct author of the Mahabharata."
-                },
-                "Q5": {
-                    "answer": "a",
-                    "awarded_marks": 0,
-                    "max_marks": 2,
-                    "feedback": "The answer 'a' is incorrect. Please provide the correct temperature for the boiling point of water."
-                },
-                "Q6": {
-                    "answer": "b",
-                    "awarded_marks": 0,
-                    "max_marks": 0,
-                    "feedback": "The answer 'b' is incorrect. The correct answer is 'Paris'."
-                },
-                "Q7": {
-                    "answer": "5",
-                    "awarded_marks": 0,
-                    "max_marks": 0,
-                    "feedback": "Your answer of 5 is incorrect; the correct answer is 4. This question carried no marks."
-                }
-            }
-        },
-        {
-            "student_info": {
-                "name": "STUDENT_NAME_HERE",
-                "roll_no": "1121"
-            },
-            "total_awarded_marks": 0,
-            "total_possible_marks": 0,
-            "answers": {
-                "Q8": {
-                    "answer": "a",
-                    "awarded_marks": 0,
-                    "max_marks": 0,
-                    "feedback": "Your answer 'a' is incorrect and does not match the reference answer 'Jupiter'."
-                },
-                "Q9": {
-                    "answer": "c",
-                    "awarded_marks": 0,
-                    "max_marks": 0,
-                    "feedback": "The answer 'c' is incorrect. The correct answer is Vyasa."
-                },
-                "Q10": {
-                    "answer": "b",
-                    "awarded_marks": 0,
-                    "max_marks": 0,
-                    "feedback": "The answer 'b' is incorrect and irrelevant to the reference answer. Please provide a factual and relevant response."
-                },
-                "Q11": {
-                    "answer": "4",
-                    "awarded_marks": 0,
-                    "max_marks": 0,
-                    "feedback": "Your answer is incorrect. No marks can be awarded as the maximum marks for this question is 0."
-                },
-                "Q12": {
-                    "answer": "c",
-                    "awarded_marks": 0,
-                    "max_marks": 0,
-                    "feedback": "The answer 'c' is incorrect. The correct answer is '4'. Please review basic arithmetic."
-                },
-                "Q13": {
-                    "answer": "b",
-                    "awarded_marks": 0,
-                    "max_marks": 0,
-                    "feedback": "The provided answer 'b' is incorrect and does not match the reference answer 'Jupiter'."
-                },
-                "Q14": {
-                    "answer": "5",
-                    "awarded_marks": 0,
-                    "max_marks": 0,
-                    "feedback": "Your answer '5' is incorrect. The expected answer was 'Vyasa'."
-                }
-            }
-        },
-        {
-            "student_info": {
-                "name": "STUDENT_NAME_HERE",
-                "roll_no": "1121"
-            },
-            "total_awarded_marks": 0,
-            "total_possible_marks": 10,
-            "answers": {
-                "Q8": {
-                    "answer": "a",
-                    "awarded_marks": 0,
-                    "max_marks": 0,
-                    "feedback": "The answer 'a' is incorrect and does not match the reference answer 'Jupiter'."
-                },
-                "Q9": {
-                    "answer": "c",
-                    "awarded_marks": 0,
-                    "max_marks": 0,
-                    "feedback": "The answer 'c' is incorrect. The correct author is Vyasa."
-                },
-                "Q10": {
-                    "answer": "b",
-                    "awarded_marks": 0,
-                    "max_marks": 0,
-                    "feedback": "The provided answer 'b' is incorrect and does not relate to the reference answer '100°C'. As the maximum marks for this question is 0, no marks are awarded."
-                },
-                "Q11": {
-                    "answer": "4",
-                    "awarded_marks": 0,
-                    "max_marks": 0,
-                    "feedback": "The student's answer '4' is incorrect; the correct answer is 'Paris'. There is no conceptual understanding demonstrated for this specific question."
-                },
-                "Q12": {
-                    "answer": "c",
-                    "awarded_marks": 0,
-                    "max_marks": 0,
-                    "feedback": "The student's answer 'c' is incorrect. The correct answer is 4, as indicated by the reference and simple arithmetic."
-                },
-                "Q13": {
-                    "answer": "b",
-                    "awarded_marks": 0,
-                    "max_marks": 0,
-                    "feedback": "The answer 'b' is incorrect. The correct answer is 'Jupiter'."
-                },
-                "Q14": {
-                    "answer": "5",
-                    "awarded_marks": 0,
-                    "max_marks": 0,
-                    "feedback": "The student's answer '5' is incorrect and does not match the reference answer 'Vyasa'. No marks can be awarded as the maximum marks for this question is 0."
-                },
-                "Q1": {
-                    "answer": "ca",
-                    "awarded_marks": 0,
-                    "max_marks": 2,
-                    "feedback": "Your answer \"ca\" is incorrect. The correct capital of India is New Delhi."
-                },
-                "Q2": {
-                    "answer": "b",
-                    "awarded_marks": 0,
-                    "max_marks": 1,
-                    "feedback": "Your answer 'b' is incorrect. The correct answer is '4'. Please re-evaluate the problem, likely simple arithmetic given the context."
-                },
-                "Q3": {
-                    "answer": "a",
-                    "awarded_marks": 0,
-                    "max_marks": 2,
-                    "feedback": "Your answer 'a' is incorrect. The correct answer is 'Jupiter'."
-                },
-                "Q4": {
-                    "answer": "c",
-                    "awarded_marks": 0,
-                    "max_marks": 3,
-                    "feedback": "The answer 'c' is incorrect. The correct author is Vyasa, as stated in the reference material."
-                },
-                "Q5": {
-                    "answer": "a",
-                    "awarded_marks": 0,
-                    "max_marks": 2,
-                    "feedback": "The answer provided is incorrect. Please review the topic related to the boiling point of water."
-                },
-                "Q6": {
-                    "answer": "b",
-                    "awarded_marks": 0,
-                    "max_marks": 0,
-                    "feedback": "The answer 'b' is incorrect. Please provide the correct answer, 'Paris'."
-                },
-                "Q7": {
-                    "answer": "5",
-                    "awarded_marks": 0,
-                    "max_marks": 0,
-                    "feedback": "The answer is incorrect. Even though the question is about simple arithmetic, the maximum marks are 0, so no marks can be awarded."
                 }
             }
         }
