@@ -46,7 +46,7 @@ os.makedirs("debug_crops", exist_ok=True)
 # --- 2. The Recognition Function (EasyOCR Version) ---
 # *** CHANGED PADDING FROM 10 to 5 ***
 # This should help fix the "ca" error by not grabbing the box line.
-def recognize_from_rois_easyocr(image_base64: str, rois: list, padding: int = 10) -> list:
+def recognize_from_rois_easyocr(image_base64: str, rois: list, padding: int = 20) -> list:
     """
     Crops and recognizes text from ROIs using EasyOCR.
     """
@@ -84,7 +84,7 @@ def recognize_from_rois_easyocr(image_base64: str, rois: list, padding: int = 10
             result = reader.readtext(
                 padded_crop, 
                 detail=0,
-                allowlist='abc0123456789' # *** REMOVED REDUNDANT UPPERCASE ***
+                allowlist='abc023456789' # *** REMOVED REDUNDANT UPPERCASE ***
             )
             
             if result:
