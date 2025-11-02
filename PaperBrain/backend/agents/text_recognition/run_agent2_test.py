@@ -2,9 +2,18 @@ import asyncio
 import base64
 import json
 import os
+import sys
 import glob   # <-- NEW
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
+
+# Fix Windows console encoding to handle Unicode properly
+if sys.platform == 'win32':
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
+        sys.stderr.reconfigure(encoding='utf-8')
+    except:
+        pass
 
 # --- 1. CONFIGURE FOLDER PATHS ---
 AGENT1_OUTPUT_FOLDER = "../region_selector/agent1_output"
@@ -16,7 +25,7 @@ os.makedirs(FINAL_EVALUATIONS_FOLDER, exist_ok=True)
 
 # Define the server to launch (Agent 2)
 agent_2_server = StdioServerParameters(
-    command="python3",
+    command="python",
     args=["ocr_server.py"] 
 )
 
@@ -96,10 +105,10 @@ async def run_batch_ocr():
                     with open(output_filename, 'w') as f:
                         json.dump(final_output, f, indent=4)
                     
-                    print(f"✅ Success! Saved final evaluation to {output_filename}")
+                    print(f"Success! Saved final evaluation to {output_filename}")
                     
                 else:
-                    print(f"❌ Error: No JSON output found from server for this job.")
+                    print(f"Error: No JSON output found from server for this job.")
 
 if __name__ == "__main__":
     asyncio.run(run_batch_ocr())

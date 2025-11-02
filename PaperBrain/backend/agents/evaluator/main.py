@@ -4,18 +4,17 @@ import csv
 from dotenv import load_dotenv
 import google.generativeai as genai
 
-# Load environment variables (like API key)
+# ---------------- Environment Setup ----------------
 load_dotenv()
 API_KEY = os.getenv("GEMINI_API_KEY")
 if not API_KEY:
     raise ValueError("GEMINI_API_KEY not found in .env file!")
 
-# Configure Gemini
 genai.configure(api_key=API_KEY)
 MODEL_NAME = "gemini-2.5-flash"
 model = genai.GenerativeModel(MODEL_NAME)
 
-# --- File Paths ---
+# ---------------- Paths ----------------
 INCOMING_FOLDER = "../text_recognition/Outputs"
 TEMP_DIR = "./temp"
 INPUTS_DIR = "./inputs"
@@ -30,15 +29,11 @@ CSV_FILE = os.path.join(RESULTS_DIR, "evaluation_results.csv")
 JSON_FILE = os.path.join(RESULTS_DIR, "evaluation_results.json")
 CURRENT_STUDENT_FILE = os.path.join(TEMP_DIR, "current_student.json")
 
-# Create necessary folders if they don't exist
-os.makedirs(INCOMING_FOLDER, exist_ok=True)
-os.makedirs(TEMP_DIR, exist_ok=True)
-os.makedirs(INPUTS_DIR, exist_ok=True)
-os.makedirs(PROMPTS_DIR, exist_ok=True)
-os.makedirs(DOCS_FOLDER, exist_ok=True)
-os.makedirs(RESULTS_DIR, exist_ok=True)
+# Ensure directories exist
+for path in [INCOMING_FOLDER, TEMP_DIR, INPUTS_DIR, PROMPTS_DIR, DOCS_FOLDER, RESULTS_DIR]:
+    os.makedirs(path, exist_ok=True)
 
-# --- Data Loaders ---
+# ---------------- Helper Functions ----------------
 def load_json(path):
     if os.path.exists(path):
         with open(path, "r", encoding="utf-8") as f:
@@ -49,13 +44,13 @@ def save_json(path, data):
     with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
 
-# --- Initial Setup ---
+# ---------------- Initial Setup ----------------
 reference_answers = load_json(REFERENCE_FILE)
 
 with open(PROMPT_FILE, "r", encoding="utf-8") as f:
     BASE_PROMPT = f.read()
 
-# --- Upload related docs ---
+# ---------------- Upload Related Docs ----------------
 def upload_related_docs(folder_path):
     uploaded_files = []
     if not os.path.exists(folder_path):
@@ -84,9 +79,9 @@ def upload_related_docs(folder_path):
 
 related_docs = upload_related_docs(DOCS_FOLDER)
 if not related_docs:
-    print("No context documents found. Grading will rely only on prompt and answers.")
+    print("No context documents found. Grading will rely only on prompt and answers.\n")
 
-# --- Gemini Evaluation Function ---
+# ---------------- Gemini Evaluation ----------------
 def evaluate_with_gemini(student_ans, ref_ans, max_marks):
     full_prompt = f"""{BASE_PROMPT}
 
@@ -100,6 +95,7 @@ Maximum Marks: {max_marks}
 
 Use any additional context from the uploaded related documents to ensure more accurate grading.
 """
+
     contents = [full_prompt]
     if related_docs:
         contents.extend(related_docs)
@@ -118,8 +114,8 @@ Use any additional context from the uploaded related documents to ensure more ac
     except Exception as e:
         return 0, f"API Error: {str(e)}"
 
-# --- Process One File ---
-def process_student_file(file_path, current_data):
+# ---------------- Process One File ----------------
+def process_student_file(file_path):
     with open(file_path, "r", encoding="utf-8") as f:
         student_entry = json.load(f)
 
@@ -130,9 +126,9 @@ def process_student_file(file_path, current_data):
 
     print(f"Evaluating student: {student_name} ({roll_no})")
 
-    total_awarded = current_data.get("total_awarded_marks", 0)
-    total_possible = current_data.get("total_possible_marks", 0)
-    answers = current_data.get("answers", {})
+    total_awarded = 0
+    total_possible = 0
+    answers = {}
 
     for qno, student_ans in student_answers.items():
         ref_info = reference_answers.get(str(qno))
@@ -168,36 +164,45 @@ def process_student_file(file_path, current_data):
         "answers": answers
     }
 
-    with open(CURRENT_STUDENT_FILE, "w", encoding="utf-8") as f:
-        json.dump(updated_data, f, indent=4, ensure_ascii=False)
+    save_json(CURRENT_STUDENT_FILE, updated_data)
 
     os.remove(file_path)
     print(f"Removed processed file: {file_path}")
 
     return updated_data
 
-# --- Main Function ---
+# ---------------- Main Processing ----------------
 def process_all_students():
     files = sorted(
         [os.path.join(INCOMING_FOLDER, f) for f in os.listdir(INCOMING_FOLDER) if f.endswith(".json")],
         key=os.path.getctime
     )
+
     if not files:
         print("No new student submissions found.")
         return
 
     print(f"Found {len(files)} submissions to process.\n")
 
+    # Safe load of current_student.json
     if os.path.exists(CURRENT_STUDENT_FILE):
-        with open(CURRENT_STUDENT_FILE, "r", encoding="utf-8") as f:
-            current_data = json.load(f)
+        try:
+            if os.path.getsize(CURRENT_STUDENT_FILE) > 0:
+                with open(CURRENT_STUDENT_FILE, "r", encoding="utf-8") as f:
+                    content = f.read().strip()
+                    current_data = json.loads(content) if content else {}
+            else:
+                current_data = {}
+        except Exception as e:
+            print(f"Warning: Failed to load current_student.json ({e}), starting fresh.")
+            current_data = {}
     else:
-        current_data = {"student_info": {}, "total_awarded_marks": 0, "total_possible_marks": 0, "answers": {}}
+        current_data = {}
 
     for file_path in files:
-        current_data = process_student_file(file_path, current_data)
+        current_data = process_student_file(file_path)
 
-    # Save final results
+    # Save to cumulative result files
     student_data = load_json(STUDENT_FILE)
     master_results = load_json(JSON_FILE)
 
@@ -229,6 +234,6 @@ def process_all_students():
     print(f"Current student record saved at: {CURRENT_STUDENT_FILE}")
     print("Updated results saved in JSON and CSV.")
 
-# --- Run Script ---
+# ---------------- Run Script ----------------
 if __name__ == "__main__":
     process_all_students()
