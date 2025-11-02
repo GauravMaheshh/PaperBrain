@@ -1,0 +1,147 @@
+import asyncio
+import base64
+import cv2
+import numpy as np
+import sys
+import json
+import os
+from PIL import Image
+from transformers import TrOCRProcessor, VisionEncoderDecoderModel, pipeline
+from mcp.server import Server
+from mcp.types import Tool, TextContent
+from mcp.server.stdio import stdio_server
+
+# --- 1. Initialization ---
+print("🧠 Initializing Hugging Face TrOCR model (microsoft/trocr-small-handwritten)...", file=sys.stderr)
+
+try:
+    model_name = "microsoft/trocr-small-handwritten"
+
+    # Load processor (feature extractor + tokenizer) and model
+    processor = TrOCRProcessor.from_pretrained(model_name)
+    model = VisionEncoderDecoderModel.from_pretrained(model_name)
+
+    # Explicitly pass processor to pipeline
+    ocr_pipeline = pipeline(
+        task="image-to-text",
+        model=model,
+        feature_extractor=processor.feature_extractor,
+        tokenizer=processor.tokenizer
+    )
+
+    print("✅ TrOCR model ready!", file=sys.stderr)
+
+except Exception as e:
+    print(f"❌ Error initializing model: {e}", file=sys.stderr)
+    sys.exit(1)
+
+# Initialize MCP server
+app = Server("trocr-server")
+
+# Create folder to store cropped debug images
+os.makedirs("debug_crops", exist_ok=True)
+
+# --- 2. Recognition Function ---
+def recognize_from_rois_trocr(image_base64: str, rois: list, padding: int = 10) -> list:
+    """
+    Crops and recognizes handwritten text from ROIs using Hugging Face TrOCR.
+    """
+    try:
+        nparr = np.frombuffer(base64.b64decode(image_base64), np.uint8)
+        color_img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+        if color_img is None:
+            raise ValueError("Could not decode image")
+        
+        img_h, img_w = color_img.shape[:2]
+        recognized_answers = []
+
+        for i, box in enumerate(rois):
+            x, y, w, h = box
+
+            # Apply padding
+            y_start = max(0, y - padding)
+            y_end = min(img_h, y + h + padding)
+            x_start = max(0, x - padding)
+            x_end = min(img_w, x + w + padding)
+
+            crop = color_img[y_start:y_end, x_start:x_end]
+
+            # Save debug crop
+            crop_filename = f"debug_crops/roi_{i+1}.png"
+            cv2.imwrite(crop_filename, crop)
+
+            if crop.size == 0:
+                recognized_answers.append("")
+                print(f"  ROI {i+1}: Empty crop, skipping.", file=sys.stderr)
+                continue
+
+            # Convert to RGB PIL Image
+            pil_image = Image.fromarray(cv2.cvtColor(crop, cv2.COLOR_BGR2RGB))
+
+            # Run TrOCR
+            prediction = ocr_pipeline(pil_image)
+            text = prediction[0]["generated_text"].strip()
+
+            recognized_answers.append(text)
+            print(f"  ROI {i+1}: Found '{text}'", file=sys.stderr)
+
+        return recognized_answers
+
+    except Exception as e:
+        print(f"TrOCR processing failed: {e}", file=sys.stderr)
+        raise ValueError(f"TrOCR processing failed: {str(e)}")
+
+# --- 3. MCP Tool Definition ---
+@app.list_tools()
+async def list_tools() -> list[Tool]:
+    return [
+        Tool(
+            name="read_text_in_rois",
+            description="Reads handwritten text from specific ROIs of a base64-encoded image using Hugging Face TrOCR.",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "image_base64": {"type": "string"},
+                    "rois": {"type": "array", "items": {"type": "array", "items": {"type": "integer"}}}
+                },
+                "required": ["image_base64", "rois"]
+            }
+        )
+    ]
+
+@app.call_tool()
+async def call_tool(name: str, arguments: dict) -> list[TextContent]:
+    if name == "read_text_in_rois":
+        try:
+            image_data = arguments["image_base64"]
+            rois = arguments["rois"]
+
+            print(f"--- Tool 'read_text_in_rois' called with {len(rois)} ROIs ---", file=sys.stderr)
+
+            recognized_list = recognize_from_rois_trocr(image_data, rois)
+
+            answers_dict = {f"Q{i+1}": ans for i, ans in enumerate(recognized_list)}
+            output_json = json.dumps(answers_dict)
+
+            return [
+                TextContent(type="text", text=f"Successfully processed {len(rois)} regions."),
+                TextContent(type="text", text=output_json)
+            ]
+        except Exception as e:
+            return [
+                TextContent(type="text", text=f"Error recognizing text: {str(e)}")
+            ]
+
+    raise ValueError(f"Unknown tool: {name}")
+
+# --- 4. Run MCP Server ---
+async def main():
+    async with stdio_server() as (read_stream, write_stream):
+        await app.run(
+            read_stream,
+            write_stream,
+            app.create_initialization_options()
+        )
+
+if __name__ == "__main__":
+    asyncio.run(main())

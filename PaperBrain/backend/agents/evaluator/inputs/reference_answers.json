@@ -1,72 +1,27 @@
 {
     "Q1": {
         "question": "",
-        "answer": "c",
-        "marks": 2
+        "answer": "b",
+        "marks": 1
     },
     "Q2": {
         "question": "",
-        "answer": "b",
+        "answer": "a",
         "marks": 1
     },
     "Q3": {
         "question": "",
-        "answer": "a",
-        "marks": 2
+        "answer": "c",
+        "marks": 1
     },
     "Q4": {
-        "question": "",
-        "answer": "c",
-        "marks": 3
-    },
-    "Q5": {
-        "question": "",
-        "answer": "a",
-        "marks": 2
-    },
-    "Q6": {
-        "question": "",
-        "answer": "c",
-        "marks": 2
-    },
-    "Q7": {
-        "question": "",
-        "answer": "5",
-        "marks": 2
-    },
-    "Q8": {
-        "question": "",
-        "answer": "c",
-        "marks": 2
-    },
-    "Q9": {
         "question": "",
         "answer": "b",
         "marks": 1
     },
-    "Q10": {
+    "Q5": {
         "question": "",
-        "answer": "a",
-        "marks": 2
-    },
-    "Q11": {
-        "question": "",
-        "answer": "c",
-        "marks": 3
-    },
-    "Q12": {
-        "question": "",
-        "answer": "a",
-        "marks": 2
-    },
-    "Q13": {
-        "question": "",
-        "answer": "c",
-        "marks": 2
-    },
-    "Q14": {
-        "question": "",
-        "answer": "5",
-        "marks": 2
+        "answer": "d",
+        "marks": 1
     }
 }

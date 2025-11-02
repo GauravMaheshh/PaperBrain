@@ -9,6 +9,7 @@ Your task:
 1. Evaluate the student's answer for correctness, completeness, and conceptual understanding.
 2. Award marks out of the given maximum marks.
 3. Provide short, constructive feedback (1–2 lines).
+4. For MCQs ignore the case of options given.
 
 Return the result strictly in this JSON format:
 {
