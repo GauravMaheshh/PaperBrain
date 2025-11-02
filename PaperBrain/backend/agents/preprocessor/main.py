@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 from alignment_agent import run_alignment_agent # Import your new agent
 
 # --- 1. DEFINE FILE PATHS ---
-# template_path = "templates/2.jpg"
-# scan_path = "scans/scan_2.jpg"
+template_path = "templates/2.jpg"
+scan_path = "scans/scan_2.jpg"
 
 # --- 2. RUN AGENT 1 ---
 # This one line runs all the logic from your old script
