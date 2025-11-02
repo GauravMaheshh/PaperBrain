@@ -1,2 +1,0 @@
-Simple arithmetic:
-2 + 2 = 4

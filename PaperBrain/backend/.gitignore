@@ -1,0 +1,40 @@
+# Environment variables (CRITICAL - contains API keys!)
+.env
+.env.*
+!.env.example
+
+# Python Bytecode & Cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual Environments
+venv/
+env/
+ENV/
+.venv/
+
+# VS Code settings
+.vscode/
+
+# PyCharm settings
+.idea/
+
+# Jupyter/IPython
+.ipynb_checkpoints/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Ignore all data and document files
+*.json
+*.csv
+*.jpg
+*.jpeg
+*.png
+*.pdf
+*.doc
+*.docx

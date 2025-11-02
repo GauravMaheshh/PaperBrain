@@ -2,124 +2,113 @@ import asyncio
 import base64
 import json
 import os
-import cv2  # Import OpenCV
-import numpy as np
+import sys
+import glob   # <-- NEW
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
 
-# --- 1. CONFIGURE YOUR TEST DATA HERE ---
+# Fix Windows console encoding to handle Unicode properly
+if sys.platform == 'win32':
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
+        sys.stderr.reconfigure(encoding='utf-8')
+    except:
+        pass
 
-# ❗️ Update these paths to match your files
-BLANK_IMAGE_PATH = "/Users/gaurav/Downloads/1-2.jpg"
-MARKED_IMAGE_PATH = "/Users/gaurav/Downloads/1.jpg" 
+# --- 1. CONFIGURE FOLDER PATHS ---
+AGENT1_OUTPUT_FOLDER = "../region_selector/agent1_output"
+FINAL_EVALUATIONS_FOLDER = "./Outputs"
 
-# ❗️ These are the ROIs from your Agent 1 script (they are for the RESIZED image)
-rois_to_test = [
-    [1434, 930, 57, 60],
-    [1452, 1101, 48, 96],
-    [1440, 1285, 64, 44],
-    [1439, 1424, 51, 62],
-    [1436, 1585, 69, 46],
-    [1430, 1909, 67, 68],
-    [1035, 2093, 66, 53]
-]
-# ----------------------------------------
+# Create final output folder if it doesn't exist
+os.makedirs(FINAL_EVALUATIONS_FOLDER, exist_ok=True)
+# ---------------------------------
 
 # Define the server to launch (Agent 2)
 agent_2_server = StdioServerParameters(
-    command="python3",
+    command="python",
     args=["ocr_server.py"] 
 )
 
-async def run_test():
+async def run_batch_ocr():
     """
-    Loads BOTH images, RESIZES the marked one, launches Agent 2,
-    and then calls the tool.
+    Finds all data files from Agent 1, launches Agent 2,
+    and calls the tool for each file.
     """
     
-    # --- 2. PREPARE INPUTS (This is the critical fix) ---
-    print(f"--- Client: Loading blank image from {BLANK_IMAGE_PATH} ---")
-    img_blank = cv2.imread(BLANK_IMAGE_PATH)
-    if img_blank is None:
-        print(f"Error: Blank image not found at '{BLANK_IMAGE_PATH}'")
+    # --- 2. FIND ALL JOBS FROM AGENT 1 ---
+    json_files = glob.glob(os.path.join(AGENT1_OUTPUT_FOLDER, "*.json"))
+    if not json_files:
+        print(f"Error: No data files found in '{AGENT1_OUTPUT_FOLDER}'.")
+        print("Please run the Agent 1 (ipynb) script first.")
         return
-
-    print(f"--- Client: Loading marked image from {MARKED_IMAGE_PATH} ---")
-    img_filled = cv2.imread(MARKED_IMAGE_PATH)
-    if img_filled is None:
-        print(f"Error: Marked image not found at '{MARKED_IMAGE_PATH}'")
-        return
-
-    # Get target dimensions from the blank image
-    h, w = img_blank.shape[:2]
+        
+    print(f"Found {len(json_files)} answer sheets to evaluate.")
     
-    print(f"--- Client: Resizing marked image to {w}x{h} (to match blank) ---")
-    # Resize the marked image, just like Agent 1 did
-    img_filled_resized = cv2.resize(img_filled, (w, h))
-
-    # Now, encode the *RESIZED* image to base64
-    _, buffer = cv2.imencode('.jpg', img_filled_resized)
-    image_base64_to_test = base64.b64encode(buffer).decode('utf-8')
-    
-    print("--- Client: Resized image encoded successfully. ---")
-    
-    
-    # --- 3. LAUNCH AND CALL AGENT 2 ---
-    print(f"--- Client: Launching server 'python ocr_server.py' ---")
+    # --- 3. LAUNCH AGENT 2 (ONCE) ---
+    print(f"\n--- Client: Launching server 'python3 ocr_server.py' ---")
     
     async with stdio_client(agent_2_server) as (read, write):
         async with ClientSession(read, write) as session:
             await session.initialize()
+            print("--- Client: Server initialized. Starting batch... ---")
             
-            print(f"--- Client: Server initialized. Calling tool 'read_text_in_rois' ---")
-            
-            # Call the tool with the RESIZED base64 string
-            result = await session.call_tool(
-                "read_text_in_rois",
-                {
-                    "image_base64": image_base64_to_test,
-                    "rois": rois_to_test
-                }
-            )
-            
-            # --- 4. SHOW THE OUTPUT ---
-            print("\n--- Client: Received Result from Server ---")
-            
-            final_json_text = None
-            for item in result.content:
-                if item.type == 'text':
-                    print(f"  > Server message: '{item.text}'")
-                    if item.text.startswith('{'):
+            # --- 4. LOOP THROUGH EACH JOB ---
+            for job_file_path in json_files:
+                print(f"\n--- Processing job: {job_file_path} ---")
+                
+                # --- 4a. Load data from Agent 1's file ---
+                with open(job_file_path, 'r') as f:
+                    data = json.load(f)
+                
+                image_base64_to_test = data.get("image_base64")
+                rois_to_test = data.get("rois")
+                
+                if not image_base64_to_test or not rois_to_test:
+                    print(f"Skipping job, data file is missing 'image_base64' or 'rois'.")
+                    continue
+                
+                # --- 4b. Call the tool ---
+                print(f"Calling tool 'read_text_in_rois' with {len(rois_to_test)} ROIs...")
+                result = await session.call_tool(
+                    "read_text_in_rois",
+                    {
+                        "image_base64": image_base64_to_test,
+                        "rois": rois_to_test
+                    }
+                )
+                
+                # --- 4c. Process the result ---
+                final_json_text = None
+                for item in result.content:
+                    if item.type == 'text' and item.text.startswith('{'):
                         final_json_text = item.text
-            
-            # --- *** START CHANGE *** ---
-            if final_json_text:
-                # 1. This is the dictionary from Agent 2: {"Q1": "c", "Q2": "6", ...}
-                answers_dict = json.loads(final_json_text)
-
-                # 2. Define the student_info (hard-coded for this test)
-                #    In a real system, you'd get this by running OCR on other ROIs.
-                student_info = {
-                    "name": "STUDENT_NAME_HERE", # Placeholder
-                    "roll_no": "ROLL_NO_HERE"     # Placeholder
-                }
                 
-                # 3. Combine them into the final desired format
-                final_output = {
-                    "student_info": student_info,
-                    "answers": answers_dict
-                }
+                if final_json_text:
+                    answers_dict = json.loads(final_json_text)
 
-                # 4. Print the beautiful, final JSON
-                print("\n" + "="*30)
-                print("  FINAL EVALUATION JSON")
-                print("="*30)
-                # Use json.dumps with indent=4 for pretty-printing
-                print(json.dumps(final_output, indent=4))
-                
-            # --- *** END CHANGE *** ---
-            else:
-                print("--- Error: No JSON output found from server. ---")
+                    # Placeholder student info
+                    student_info = {
+                        "name": "STUDENT_NAME_HERE",
+                        "roll_no": "ROLL_NO_HERE"
+                    }
+                    
+                    final_output = {
+                        "student_info": student_info,
+                        "answers": answers_dict
+                    }
+
+                    # --- 4d. Save the final JSON ---
+                    base_name = os.path.basename(job_file_path)
+                    file_name_only = os.path.splitext(base_name)[0].replace('_data', '')
+                    output_filename = f"{FINAL_EVALUATIONS_FOLDER}/{file_name_only}_evaluation.json"
+                    
+                    with open(output_filename, 'w') as f:
+                        json.dump(final_output, f, indent=4)
+                    
+                    print(f"Success! Saved final evaluation to {output_filename}")
+                    
+                else:
+                    print(f"Error: No JSON output found from server for this job.")
 
 if __name__ == "__main__":
-    asyncio.run(run_test())
+    asyncio.run(run_batch_ocr())

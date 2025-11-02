@@ -10,7 +10,7 @@ scan_path = "scans/scan_2.jpg"
 # This one line runs all the logic from your old script
 img_aligned, H, score = run_alignment_agent(template_path, scan_path)
 
-# --- 3. HANDLE THE OUTPUT ---
+# --- Initial Setup ---
 if img_aligned is not None:
     print(f"\n--- Agent 1 Succeeded ---")
     print(f"Alignment Score: {score}")

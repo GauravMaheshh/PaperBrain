@@ -52,4 +52,4 @@ def run_alignment_agent(template_path, scan_path):
     # Return all deliverables
     # H = transformation_parameters
     # alignment_score = alignment_accuracy
-    return img_aligned
+    return img_aligned, H, alignment_score
