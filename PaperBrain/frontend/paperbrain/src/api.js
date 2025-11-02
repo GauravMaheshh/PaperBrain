@@ -1,6 +1,6 @@
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
-export async function apiUpload(answerKeys, answerSheet, relatedDocs = []) {
+export async function apiUpload(answerKeys, answerSheets, relatedDocs = []) {
   const formData = new FormData();
   
   // Add answer keys
@@ -8,8 +8,13 @@ export async function apiUpload(answerKeys, answerSheet, relatedDocs = []) {
     formData.append('answer_key[]', file);
   });
   
-  // Add answer sheet
-  formData.append('answer_sheet', answerSheet);
+  // Add answer sheets (can be single file or array)
+  const sheets = Array.isArray(answerSheets) ? answerSheets : [answerSheets];
+  sheets.forEach(file => {
+    if (file) {
+      formData.append('answer_sheet[]', file);
+    }
+  });
   
   // Add related docs (optional)
   relatedDocs.forEach(file => {
@@ -23,6 +28,17 @@ export async function apiUpload(answerKeys, answerSheet, relatedDocs = []) {
   
   const data = await resp.json().catch(() => ({}));
   if (!resp.ok) throw new Error(data.error || `Upload failed (${resp.status})`);
+  return data;
+}
+
+export async function apiSaveStudentInfo(studentInfo) {
+  const resp = await fetch(`${API_BASE}/api/student-info`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ student_info: studentInfo })
+  });
+  const data = await resp.json().catch(() => ({}));
+  if (!resp.ok) throw new Error(data.error || `Save failed (${resp.status})`);
   return data;
 }
 

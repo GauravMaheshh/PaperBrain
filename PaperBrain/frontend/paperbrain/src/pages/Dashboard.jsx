@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { apiUpload, apiRunPipeline, apiOutputsList, apiCurrentStudent, apiGetQuestionsForReference, apiGetReferenceAnswers, apiUpdateReferenceAnswers } from '../api';
+import { apiUpload, apiRunPipeline, apiOutputsList, apiCurrentStudent, apiGetQuestionsForReference, apiGetReferenceAnswers, apiUpdateReferenceAnswers, apiSaveStudentInfo } from '../api';
 import ImageGrid from '../components/ImageGrid';
 import UploadPanel from '../components/UploadPanel';
 import PipelineOutputs from '../components/PipelineOutputs';
@@ -26,8 +26,11 @@ function DotGrid({
 
 export default function Dashboard() {
   const [answerKeys, setAnswerKeys] = useState([]);
-  const [answerSheet, setAnswerSheet] = useState(null);
+  const [answerSheets, setAnswerSheets] = useState([]);
   const [relatedDocs, setRelatedDocs] = useState([]);
+  const [showStudentInfoModal, setShowStudentInfoModal] = useState(false);
+  const [uploadedAnswerSheets, setUploadedAnswerSheets] = useState([]);
+  const [studentInfoMap, setStudentInfoMap] = useState({});
   const [uploading, setUploading] = useState(false);
   const [running, setRunning] = useState(false);
   const [message, setMessage] = useState('');
@@ -50,7 +53,7 @@ export default function Dashboard() {
     // Load persisted files from sessionStorage if they exist
     try {
       const savedAnswerKeys = sessionStorage.getItem('answerKeys');
-      const savedAnswerSheet = sessionStorage.getItem('answerSheet');
+      const savedAnswerSheets = sessionStorage.getItem('answerSheets');
       const savedRelatedDocs = sessionStorage.getItem('relatedDocs');
       
       if (savedAnswerKeys) {
@@ -60,9 +63,10 @@ export default function Dashboard() {
         setAnswerKeys(fileObjects);
       }
       
-      if (savedAnswerSheet) {
-        const file = JSON.parse(savedAnswerSheet);
-        setAnswerSheet(new File([], file.name, { type: file.type }));
+      if (savedAnswerSheets) {
+        const files = JSON.parse(savedAnswerSheets);
+        const fileObjects = files.map(f => new File([], f.name, { type: f.type }));
+        setAnswerSheets(fileObjects);
       }
       
       if (savedRelatedDocs) {
@@ -111,10 +115,10 @@ export default function Dashboard() {
   }, [answerKeys]);
   
   useEffect(() => {
-    if (answerSheet) {
-      sessionStorage.setItem('answerSheet', JSON.stringify({ name: answerSheet.name, type: answerSheet.type }));
+    if (answerSheets.length > 0) {
+      sessionStorage.setItem('answerSheets', JSON.stringify(answerSheets.map(f => ({ name: f.name, type: f.type }))));
     }
-  }, [answerSheet]);
+  }, [answerSheets]);
   
   useEffect(() => {
     if (relatedDocs.length > 0) {
@@ -123,8 +127,8 @@ export default function Dashboard() {
   }, [relatedDocs]);
 
   async function handleUpload() {
-    if (answerKeys.length === 0 || !answerSheet) {
-      showMessage('Please upload question papers and answer sheet', 'warning');
+    if (answerKeys.length === 0 || answerSheets.length === 0) {
+      showMessage('Please upload question papers and at least one answer sheet', 'warning');
       return;
     }
 
@@ -134,11 +138,26 @@ export default function Dashboard() {
     
     try {
       setUploadProgress(50);
-      const response = await apiUpload(answerKeys, answerSheet, relatedDocs);
+      const response = await apiUpload(answerKeys, answerSheets, relatedDocs);
       setUploadProgress(100);
+      
+      // Store uploaded answer sheets for student info collection
+      setUploadedAnswerSheets(answerSheets);
+      
+      // Show student info modal
+      const initialStudentInfo = {};
+      answerSheets.forEach(sheet => {
+        initialStudentInfo[sheet.name] = {
+          name: '',
+          roll_no: ''
+        };
+      });
+      setStudentInfoMap(initialStudentInfo);
+      setShowStudentInfoModal(true);
+      
       setUploaded(true);
       sessionStorage.setItem('uploaded', 'true');
-      showMessage(`✅ Files uploaded successfully! ${answerKeys.length} question paper(s), 1 answer sheet, ${relatedDocs.length} related doc(s)`, 'success');
+      showMessage(`✅ Files uploaded successfully! ${answerKeys.length} question paper(s), ${answerSheets.length} answer sheet(s), ${relatedDocs.length} related doc(s)`, 'success');
       
       // Clear progress after 1 second
       setTimeout(() => setUploadProgress(0), 1000);
@@ -147,6 +166,26 @@ export default function Dashboard() {
       showMessage(`❌ Upload failed: ${err.message}`, 'error');
     } finally {
       setUploading(false);
+    }
+  }
+
+  async function handleSaveStudentInfo() {
+    try {
+      // Format the mapping with scan_ prefix for backend
+      const formattedMap = {};
+      uploadedAnswerSheets.forEach(sheet => {
+        const key = `scan_${sheet.name}`;
+        formattedMap[key] = {
+          name: studentInfoMap[sheet.name]?.name || '',
+          roll_no: studentInfoMap[sheet.name]?.roll_no || ''
+        };
+      });
+      
+      await apiSaveStudentInfo(formattedMap);
+      setShowStudentInfoModal(false);
+      showMessage('✅ Student information saved!', 'success');
+    } catch (err) {
+      showMessage(`❌ Failed to save student info: ${err.message}`, 'error');
     }
   }
 
@@ -365,7 +404,7 @@ export default function Dashboard() {
             )}
           </section>
 
-          {/* Answer Sheet Section */}
+          {/* Answer Sheets Section */}
           <section style={{
             padding: '2rem',
             backgroundColor: 'rgba(17, 24, 39, 0.6)',
@@ -373,20 +412,20 @@ export default function Dashboard() {
             border: '1px solid rgba(255, 255, 255, 0.1)',
             borderRadius: '16px'
           }}>
-            <h2 style={{ fontSize: '1.5rem', marginBottom: '1rem', fontWeight: 600 }}>Answer Sheet (Required)</h2>
+            <h2 style={{ fontSize: '1.5rem', marginBottom: '1rem', fontWeight: 600 }}>Answer Sheets (Required)</h2>
             <p style={{ color: 'rgba(255, 255, 255, 0.6)', marginBottom: '1.5rem', fontSize: '0.95rem' }}>
-              Upload the student's answer sheet for processing
+              Upload one or more student answer sheets for processing
             </p>
             <UploadPanel
-              label="Choose Answer Sheet"
+              label="Choose Answer Sheets"
               accept="image/*"
-              multiple={false}
-              onChange={(files) => setAnswerSheet(files[0])}
+              multiple={true}
+              onChange={setAnswerSheets}
             />
-            {answerSheet && (
+            {answerSheets.length > 0 && (
               <ImageGrid 
-                images={[answerSheet]} 
-                onRemove={() => setAnswerSheet(null)}
+                images={answerSheets} 
+                onRemove={(idx) => setAnswerSheets(answerSheets.filter((_, i) => i !== idx))}
               />
             )}
           </section>
@@ -426,7 +465,7 @@ export default function Dashboard() {
           }}>
             <button 
               onClick={handleUpload}
-              disabled={uploading || answerKeys.length === 0 || !answerSheet}
+              disabled={uploading || answerKeys.length === 0 || answerSheets.length === 0}
               style={{
                 padding: '1rem 2.5rem',
                 fontSize: '1rem',
@@ -551,6 +590,209 @@ export default function Dashboard() {
       </div>
 
       {/* Copyright */}
+      {/* Student Info Modal */}
+      {showStudentInfoModal && (
+        <div style={{
+          position: 'fixed',
+          inset: 0,
+          backgroundColor: 'rgba(0, 0, 0, 0.9)',
+          zIndex: 10000,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '2rem'
+        }}
+        onClick={(e) => {
+          if (e.target === e.currentTarget) {
+            // Only close if clicking backdrop, not the modal content
+          }
+        }}>
+          <div style={{
+            backgroundColor: 'rgba(17, 24, 39, 0.95)',
+            backdropFilter: 'blur(20px)',
+            border: '2px solid rgba(82, 39, 255, 0.4)',
+            borderRadius: '20px',
+            padding: '2rem',
+            maxWidth: '800px',
+            width: '100%',
+            maxHeight: '90vh',
+            overflowY: 'auto'
+          }}
+          onClick={(e) => e.stopPropagation()}>
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginBottom: '1.5rem'
+            }}>
+              <h2 style={{
+                fontSize: '1.75rem',
+                fontWeight: 700,
+                color: '#5227FF'
+              }}>
+                Enter Student Information
+              </h2>
+              <button
+                onClick={() => setShowStudentInfoModal(false)}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  color: 'rgba(255, 255, 255, 0.6)',
+                  fontSize: '1.5rem',
+                  cursor: 'pointer',
+                  padding: '0.5rem',
+                  borderRadius: '4px'
+                }}
+                onMouseEnter={(e) => e.target.style.color = '#ef4444'}
+                onMouseLeave={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.6)'}
+              >
+                ✕
+              </button>
+            </div>
+            
+            <p style={{
+              color: 'rgba(255, 255, 255, 0.7)',
+              marginBottom: '2rem',
+              fontSize: '0.95rem'
+            }}>
+              Please provide the student name and roll number for each uploaded answer sheet.
+            </p>
+
+            <div style={{
+              display: 'grid',
+              gap: '1.5rem',
+              marginBottom: '2rem'
+            }}>
+              {uploadedAnswerSheets.map((sheet, idx) => (
+                <div key={idx} style={{
+                  padding: '1.5rem',
+                  backgroundColor: 'rgba(82, 39, 255, 0.1)',
+                  border: '2px solid rgba(82, 39, 255, 0.3)',
+                  borderRadius: '12px'
+                }}>
+                  <div style={{
+                    marginBottom: '1rem',
+                    fontSize: '0.9rem',
+                    color: 'rgba(255, 255, 255, 0.6)'
+                  }}>
+                    Answer Sheet: {sheet.name}
+                  </div>
+                  <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: '1fr 1fr',
+                    gap: '1rem'
+                  }}>
+                    <div>
+                      <label style={{
+                        display: 'block',
+                        fontSize: '0.85rem',
+                        color: 'rgba(255, 255, 255, 0.7)',
+                        marginBottom: '0.5rem',
+                        fontWeight: 500
+                      }}>Student Name</label>
+                      <input
+                        type="text"
+                        placeholder="Enter student name"
+                        value={studentInfoMap[sheet.name]?.name || ''}
+                        onChange={(e) => {
+                          setStudentInfoMap(prev => ({
+                            ...prev,
+                            [sheet.name]: {
+                              ...(prev[sheet.name] || {}),
+                              name: e.target.value,
+                              roll_no: prev[sheet.name]?.roll_no || ''
+                            }
+                          }));
+                        }}
+                        style={{
+                          padding: '0.75rem',
+                          backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                          border: '1px solid rgba(255, 255, 255, 0.2)',
+                          borderRadius: '8px',
+                          color: '#fff',
+                          fontSize: '1rem',
+                          width: '100%'
+                        }}
+                      />
+                    </div>
+                    <div>
+                      <label style={{
+                        display: 'block',
+                        fontSize: '0.85rem',
+                        color: 'rgba(255, 255, 255, 0.7)',
+                        marginBottom: '0.5rem',
+                        fontWeight: 500
+                      }}>Roll Number</label>
+                      <input
+                        type="text"
+                        placeholder="Enter roll number"
+                        value={studentInfoMap[sheet.name]?.roll_no || ''}
+                        onChange={(e) => {
+                          setStudentInfoMap(prev => ({
+                            ...prev,
+                            [sheet.name]: {
+                              ...(prev[sheet.name] || {}),
+                              name: prev[sheet.name]?.name || '',
+                              roll_no: e.target.value
+                            }
+                          }));
+                        }}
+                        style={{
+                          padding: '0.75rem',
+                          backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                          border: '1px solid rgba(255, 255, 255, 0.2)',
+                          borderRadius: '8px',
+                          color: '#fff',
+                          fontSize: '1rem',
+                          width: '100%'
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div style={{
+              display: 'flex',
+              gap: '1rem',
+              justifyContent: 'flex-end'
+            }}>
+              <button
+                onClick={() => setShowStudentInfoModal(false)}
+                style={{
+                  padding: '0.75rem 1.5rem',
+                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  borderRadius: '8px',
+                  color: '#fff',
+                  cursor: 'pointer',
+                  fontSize: '0.95rem',
+                  fontWeight: 600
+                }}
+              >
+                Skip
+              </button>
+              <button
+                onClick={handleSaveStudentInfo}
+                style={{
+                  padding: '0.75rem 1.5rem',
+                  backgroundColor: '#5227FF',
+                  border: 'none',
+                  borderRadius: '8px',
+                  color: '#fff',
+                  cursor: 'pointer',
+                  fontSize: '0.95rem',
+                  fontWeight: 600
+                }}
+              >
+                Save & Continue
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Reference Answers Modal */}
       {showReferenceAnswersModal && (
         <div style={{
