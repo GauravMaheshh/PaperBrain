@@ -9,5 +9,5 @@ seaborn
 pandas
 easyocr
 google-generativeai
-python-dotenv
 mcp
+python-dotenv
